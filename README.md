@@ -14,3 +14,4 @@ I've decided to create my dotfiles repository for macos custom installation and 
 - Trackpad (Three Finger Drag and Tap to Click)
 - .zshrc
 - Git (config and SSH)
+- Homebrew Install
