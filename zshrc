@@ -1,8 +1,15 @@
 echo 'Hello MaitreWaff from .zshrc'
 
 # Set Variables
+# Syntax highlighting for man pages using bat
+# export MANPAGER="sh -c 'awk '\''{ gsub(/\x1B\[[0-9;]*m/, \"\", \$0); gsub(/.\x08/, \"\", \$0); print }'\'' | bat -p -lman'"
+# man 2 select
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export HOMEBREW_CASK_OPTS="--no-quarantine"
+
 
 # Change ZSH Options
+
 
 # Create Aliases
 alias ls='ls -lAFh'
@@ -40,6 +47,7 @@ function mkcd() {
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
+#ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
