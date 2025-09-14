@@ -4,15 +4,31 @@ echo 'Hello MaitreWaff from .zshrc'
 # Syntax highlighting for man pages using bat
 # export MANPAGER="sh -c 'awk '\''{ gsub(/\x1B\[[0-9;]*m/, \"\", \$0); gsub(/.\x08/, \"\", \$0); print }'\'' | bat -p -lman'"
 # man 2 select
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+#export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export HOMEBREW_CASK_OPTS="--no-quarantine"
-
+#export NULLCMD=bat
+#export N_PREFIX="$HOME/.n"
+#export PREFIX="$N_PREFIX"
 
 # Change ZSH Options
 
+#[[ -z $HISTFILE ]] && HISTFILE="$HOME/.zsh_history"
+#HISTSIZE=2000
+#$SAVEHIST=1000
+#setopt histNoStore
+#setopt extendedHistory
+
+# History Duplication Options
+#setopt histFindNoDups
+#setopt histSaveNoDups
 
 # Create Aliases
 alias ls='ls -lAFh'
+alias eza='eza -laFh --git'
+alias bbd='brew bundle dump --force --describe'
+#alias trail='<<<${(F)path}'
+alias rm=trash
+alias man=batman
 
 # Customize Prompt(s)
 PROMPT='
@@ -21,6 +37,7 @@ PROMPT='
 RPROMPT='%*'
 
 # Add Locations to $PATH Variable
+#typeset -U path
 
 
 # Write Handy Functions

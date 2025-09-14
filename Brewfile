@@ -16,6 +16,8 @@ brew "asciinema"
 brew "autoconf"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Bash scripts that integrate bat with various command-line tools
+brew "bat-extras"
 # Apjanke's fork of the classic cowsay project
 brew "cowsay"
 # Get a file from an HTTP, HTTPS or FTP server
@@ -58,6 +60,8 @@ brew "john"
 brew "kompose"
 # Kubernetes command-line interface
 brew "kubernetes-cli"
+# Mac App Store command-line interface
+brew "mas"
 # Utility for managing network connections
 brew "netcat"
 # Web server scanner
@@ -196,6 +200,21 @@ cask "windows-app"
 cask "wireshark-app"
 # Open-source version of the X.Org X Window System
 cask "xquartz"
+mas "CmdRef", id: 956853496
+mas "CopyClip", id: 595191960
+mas "Data Jar", id: 1453273600
+mas "Developer", id: 640199958
+mas "Hand Mirror", id: 1502839586
+mas "HotKey", id: 975890633
+mas "Jayson", id: 1468691718
+mas "Kindle", id: 302584613
+mas "Lekh", id: 576124115
+mas "OX Drive", id: 818195014
+mas "Quick Note", id: 1472935217
+mas "Stockfish", id: 801463932
+mas "SysNetInfo", id: 1118988797
+mas "Tidy Mind", id: 1526174269
+mas "Xcode", id: 497799835
 vscode "10nates.ollama-autocoder"
 vscode "4ops.terraform"
 vscode "aaron-bond.better-comments"
