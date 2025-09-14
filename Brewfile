@@ -135,6 +135,8 @@ cask "firefox"
 cask "git-credential-manager"
 # Desktop client for GitHub repositories
 cask "github"
+# Git client focusing on productivity
+cask "gitkraken"
 # Web browser
 cask "google-chrome"
 # Client for the Google Drive storage service
