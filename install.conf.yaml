@@ -10,6 +10,9 @@
 #    ~/.tmux.conf: tmux.conf
 #    ~/.vim: vim
 #    ~/.vimrc: vimrc
+    ~/.config/bat:
+      create: true
+      path: config/bat
 
 - create:
     - ~/workspace
