@@ -8,8 +8,6 @@ tap "wpscanteam/tap"
 brew "aircrack-ng"
 # ARP scanning and fingerprinting tool
 brew "arp-scan"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.13"
 # Record and share terminal sessions
 brew "asciinema"
 # Automatic configure script builder
@@ -40,7 +38,7 @@ brew "fortune"
 brew "git"
 # AVH edition of git-flow
 brew "git-flow-avh"
-# GNU Pretty Good Privacy (PGP) package
+# GNU Privacy Guard (OpenPGP)
 brew "gnupg"
 # Directory/file & DNS busting tool written in Go
 brew "gobuster"
@@ -60,15 +58,21 @@ brew "john"
 brew "kompose"
 # Kubernetes command-line interface
 brew "kubernetes-cli"
+# Pager program similar to more
+brew "less"
 # Mac App Store command-line interface
 brew "mas"
+# Free (GNU) replacement for the Pico text editor
+brew "nano"
 # Utility for managing network connections
 brew "netcat"
 # Web server scanner
 brew "nikto"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.13"
 # Port scanning utility for large networks
 brew "nmap"
-# Platform built on V8 to build network applications
+# Open-source, cross-platform JavaScript runtime environment
 brew "node"
 # SSL/TLS VPN implementing OSI layer 2 or 3 secure network extension
 brew "openvpn"
@@ -102,6 +106,8 @@ brew "wget"
 brew "wireshark"
 # Malware identification and classification tool
 brew "yara"
+# UNIX shell (command interpreter)
+brew "zsh"
 # Terraform
 brew "hashicorp/tap/terraform"
 # Pulumi - Modern Infrastructure as Code. Any cloud, any language 
@@ -121,6 +127,8 @@ cask "arc"
 cask "binance"
 # Web browser focusing on privacy
 cask "brave-browser"
+# Web security testing toolkit
+cask "burp-suite"
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
 # Anthropic's official Claude AI desktop app
@@ -204,16 +212,12 @@ mas "CmdRef", id: 956853496
 mas "CopyClip", id: 595191960
 mas "Data Jar", id: 1453273600
 mas "Developer", id: 640199958
-mas "Hand Mirror", id: 1502839586
-mas "HotKey", id: 975890633
 mas "Jayson", id: 1468691718
 mas "Kindle", id: 302584613
-mas "Lekh", id: 576124115
 mas "OX Drive", id: 818195014
 mas "Quick Note", id: 1472935217
 mas "Stockfish", id: 801463932
 mas "SysNetInfo", id: 1118988797
-mas "Tidy Mind", id: 1526174269
 mas "Xcode", id: 497799835
 vscode "10nates.ollama-autocoder"
 vscode "4ops.terraform"
