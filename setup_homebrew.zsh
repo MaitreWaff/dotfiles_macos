@@ -1,6 +1,12 @@
 #!/usr/bin/env zsh
 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if exists brew; then
+  echo "brew exists, skipping the install..."
+else
+  echo "brew doesn't exist, installing..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+fi
 
 echo "\n<<< Starting Homebrew Setup >>>\n"
 
