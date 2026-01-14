@@ -6,7 +6,7 @@ echo 'Hello MaitreWaff from .zshrc'
 # man 2 select
 #export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export HOMEBREW_CASK_OPTS="--no-quarantine"
-#export NULLCMD=bat
+export NULLCMD=bat
 #export N_PREFIX="$HOME/.n"
 #export PREFIX="$N_PREFIX"
 
@@ -23,10 +23,13 @@ export HOMEBREW_CASK_OPTS="--no-quarantine"
 #setopt histSaveNoDups
 
 # Create Aliases
-alias ls='ls -lAFh'
-alias eza='eza -laFh --git'
+#alias ls='ls -lAFh'
+#alias exa='eza -laFh --git'
+alias ls='eza -lah --git'
+alias cat='bat'
+alias exa='eza -lah --git'
 alias bbd='brew bundle dump --force --describe'
-#alias trail='<<<${(F)path}'
+alias trail='<<<${(F)path}'
 alias rm=trash
 alias man=batman
 
