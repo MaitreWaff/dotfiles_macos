@@ -9,5 +9,7 @@ echo "The current shell is: $(ps $$ -ocomm=)"
 
 # which exists
 
-sleep 10; echo 'done';
+sleep 1; echo 'done';
+
+echo $HOME
 
