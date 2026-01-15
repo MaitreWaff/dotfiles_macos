@@ -3,7 +3,7 @@
 echo "\n<<< Starting Node Setup >>>\n"
 
 # Installation unnecessary; it's in the Brewfile.
-# See zshrc for N_PREFIX variable and addition to PATH
+# See zshrc for N_PREFIX variable and addition to $path array.
 
 if exists node; then
   echo "Node $(node --version) & NPM $(npm --version) already installed"
