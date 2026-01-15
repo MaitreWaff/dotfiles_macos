@@ -40,6 +40,8 @@ brew "git"
 brew "git-flow-avh"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
 # Directory/file & DNS busting tool written in Go
 brew "gobuster"
 # World's fastest and most advanced password recovery utility
