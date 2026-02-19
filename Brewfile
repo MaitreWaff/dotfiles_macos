@@ -16,12 +16,14 @@ brew "autoconf"
 brew "bat"
 # Bash scripts that integrate bat with various command-line tools
 brew "bat-extras"
+# XML-based font configuration API for X Windows
+brew "fontconfig"
 # Apjanke's fork of the classic cowsay project
 brew "cowsay"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Pack, ship and run any application as a lightweight container
-brew "docker", link: false
+brew "docker"
 # Perl lib for reading and writing EXIF metadata
 brew "exiftool"
 # Database of public exploits and corresponding vulnerable software
@@ -64,6 +66,8 @@ brew "kubernetes-cli"
 brew "less"
 # Mac App Store command-line interface
 brew "mas"
+# Run a Kubernetes cluster locally
+brew "minikube"
 # Node version management
 brew "n"
 # Free (GNU) replacement for the Pico text editor
@@ -163,6 +167,8 @@ cask "hex-fiend"
 cask "hiddenbar"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
+# Free cross-platform office suite, fresh version
+cask "libreoffice"
 # Open-source Markdown editor
 cask "macdown"
 # Provides updates to various Microsoft products
@@ -213,7 +219,6 @@ cask "wireshark-app"
 # Open-source version of the X.Org X Window System
 cask "xquartz"
 mas "CmdRef", id: 956853496
-mas "CopyClip", id: 595191960
 mas "Data Jar", id: 1453273600
 mas "Developer", id: 640199958
 mas "Jayson", id: 1468691718
@@ -233,6 +238,7 @@ vscode "alexcvzz.vscode-sqlite"
 vscode "amazonwebservices.amazon-q-vscode"
 vscode "amazonwebservices.aws-toolkit-vscode"
 vscode "antstack.aws-js-code-snippet"
+vscode "astro-build.astro-vscode"
 vscode "austenc.tailwind-docs"
 vscode "azurepaas-tools.vscode-learncloud"
 vscode "batisteo.vscode-django"
@@ -328,6 +334,7 @@ vscode "ms-vscode-remote.remote-wsl"
 vscode "ms-vscode-remote.vscode-remote-extensionpack"
 vscode "ms-vscode.azure-repos"
 vscode "ms-vscode.cmake-tools"
+vscode "ms-vscode.cpp-devtools"
 vscode "ms-vscode.cpptools"
 vscode "ms-vscode.cpptools-extension-pack"
 vscode "ms-vscode.cpptools-themes"
@@ -387,9 +394,8 @@ vscode "tonybaloney.vscode-pets"
 vscode "toramameseven.markdown-docx"
 vscode "twxs.cmake"
 vscode "tyriar.lorem-ipsum"
+vscode "unifiedjs.vscode-mdx"
 vscode "usernamehw.errorlens"
-vscode "visualstudioexptteam.intellicode-api-usage-examples"
-vscode "visualstudioexptteam.vscodeintellicode"
 vscode "voorjaar.windicss-intellisense"
 vscode "vscode-aws-console.vscode-aws-console"
 vscode "vscode-extensions-farshid.vscode-extensions-farshid"
