@@ -33,6 +33,12 @@ alias trail='<<<${(F)path}'
 alias rm=trash
 alias man=batman
 
+# K8s aliases
+alias k='kubectl'
+alias kf='kubectl port-forward'
+alias knode='kubectl get node -l'
+
+
 # Customize Prompt(s)
 PROMPT='
 %1~ %L %# '
@@ -182,4 +188,9 @@ fpath=($HOME/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 
+# End of Docker CLI completions
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/maitrewaff/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
 # End of Docker CLI completions
