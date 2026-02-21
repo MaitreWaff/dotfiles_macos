@@ -227,6 +227,7 @@ mas "OX Drive", id: 818195014
 mas "Quick Note", id: 1472935217
 mas "Stockfish", id: 801463932
 mas "SysNetInfo", id: 1118988797
+mas "webextension", id: 6502697899
 mas "Xcode", id: 497799835
 vscode "10nates.ollama-autocoder"
 vscode "4ops.terraform"
