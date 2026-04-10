@@ -194,3 +194,8 @@ fpath=(/Users/maitrewaff/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+
+# Vagrant env variables
+export VAGRANT_DEFAULT_PROVIDER=qemu
+
+# End of Vagrant env variables

@@ -6,6 +6,8 @@ tap "sidaf/pentest"
 tap "wpscanteam/tap"
 # Next-generation aircrack with lots of new features
 brew "aircrack-ng"
+# Automate deployment, configuration, and upgrading
+brew "ansible"
 # ARP scanning and fingerprinting tool
 brew "arp-scan"
 # Record and share terminal sessions
@@ -64,6 +66,8 @@ brew "kompose"
 brew "kubernetes-cli"
 # Pager program similar to more
 brew "less"
+# C virtualization API
+brew "libvirt"
 # Mac App Store command-line interface
 brew "mas"
 # Run a Kubernetes cluster locally
@@ -76,8 +80,6 @@ brew "nano"
 brew "netcat"
 # Web server scanner
 brew "nikto"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.13"
 # Port scanning utility for large networks
 brew "nmap"
 # Open-source, cross-platform JavaScript runtime environment
@@ -96,8 +98,14 @@ brew "pnpm"
 brew "poppler"
 # Object-relational database system
 brew "postgresql@14"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.13"
+# Generic machine emulator and virtualizer
+brew "qemu"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
+# Daemon to provide vmnet.framework support for rootless QEMU
+brew "socket_vmnet"
 # Penetration testing for SQL injection and database servers
 brew "sqlmap"
 # User interface to the TELNET protocol
@@ -141,6 +149,10 @@ cask "burp-suite"
 cask "chatgpt"
 # Anthropic's official Claude AI desktop app
 cask "claude"
+# Terminal-based AI coding assistant
+cask "claude-code"
+# Browser for SQLite databases
+cask "db-browser-for-sqlite"
 # Voice and text chat software
 cask "discord"
 # App to build and share containerised applications and microservices
@@ -163,8 +175,6 @@ cask "google-chrome"
 cask "google-drive"
 # Hex editor focussing on speed
 cask "hex-fiend"
-# Utility to hide menu bar items
-cask "hiddenbar"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
 # Free cross-platform office suite, fresh version
@@ -193,6 +203,8 @@ cask "obsidian"
 cask "postman"
 # Companion app for Flipper Zero devices
 cask "qflipper"
+# Remote management solution
+cask "royal-tsx"
 # Screen recorder
 cask "tella"
 # LaTeX editor
@@ -238,6 +250,7 @@ vscode "alefragnani.bookmarks"
 vscode "alexcvzz.vscode-sqlite"
 vscode "amazonwebservices.amazon-q-vscode"
 vscode "amazonwebservices.aws-toolkit-vscode"
+vscode "anthropic.claude-code"
 vscode "antstack.aws-js-code-snippet"
 vscode "astro-build.astro-vscode"
 vscode "austenc.tailwind-docs"
