@@ -40,6 +40,8 @@ brew "ffuf"
 brew "fortune"
 # Distributed revision control system
 brew "git"
+# Scan de secrets dans les dépôts git
+brew "gitleaks"
 # AVH edition of git-flow
 brew "git-flow-avh"
 # GNU Privacy Guard (OpenPGP)

@@ -1,0 +1,41 @@
+# Configuration Gitleaks — dotfiles macOS
+# Doc : https://github.com/gitleaks/gitleaks/tree/master#configuration
+# Version gitleaks ciblée : v8.30.1
+
+title = "dotfiles-macos gitleaks config"
+
+# ─── Règles d'allowlist globales ─────────────────────────────────────────────
+[allowlist]
+  description = "Exceptions globales — faux positifs connus"
+
+  # Chemins à ignorer entièrement
+  paths = [
+    # Sous-module tiers — non scanné (son propre repo est audité séparément)
+    '''^dotbot/''',
+    # Lockfiles générés automatiquement
+    '''Brewfile\.lock\.json''',
+  ]
+
+  # Commits à ignorer (ex : commit de migration connu sans secret réel)
+  # commits = ["abc123def456"]
+
+  # Patterns de chaînes connus comme sûrs
+  regexes = [
+    # Email GitHub noreply — pas un secret
+    '''\d+\+[A-Za-z0-9_-]+@users\.noreply\.github\.com''',
+    # URLs publiques standard
+    '''https://github\.com/[A-Za-z0-9_/-]+''',
+    '''https://raw\.githubusercontent\.com/[A-Za-z0-9_/.-]+''',
+  ]
+
+# ─── Comment ajouter une exception ciblée ────────────────────────────────────
+# Si gitleaks détecte un faux positif sur une ligne précise, deux options :
+#
+# Option 1 — commentaire inline dans le fichier source :
+#   export SOME_VAR="valeur"  # gitleaks:allow
+#
+# Option 2 — règle d'allowlist dans ce fichier :
+#   [[rules]]
+#   id = "generic-api-key"
+#   [rules.allowlist]
+#   regexes = ['''le-pattern-exact-du-faux-positif''']
