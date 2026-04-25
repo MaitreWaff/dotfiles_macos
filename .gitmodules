@@ -2,3 +2,5 @@
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
+	# Pinned to v1.24.1 — a7fe585f087617f5d897754b970d1088af50084c
+	# Pour mettre à jour : cd dotbot && git fetch --tags && git checkout vX.Y.Z && cd .. && git add dotbot .gitmodules
