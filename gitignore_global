@@ -1,0 +1,33 @@
+# ─── Outils IA — jamais committer ───────────────────────────────────────────
+.claude/
+.qodo/
+.cursor/
+.aider*
+.aiderignore
+.continue/
+.codeium/
+.supermaven/
+.tabnine/
+
+# ─── OS macOS ────────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# ─── Éditeurs ────────────────────────────────────────────────────────────────
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# ─── Secrets et clés ─────────────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.p12
+*.pfx

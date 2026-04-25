@@ -9,6 +9,7 @@
     ~/.zshenv:
     ~/.bashrc:
     ~/.gitconfig:
+    ~/.gitignore_global: gitignore_global
 #    ~/.vim: vim
     ~/.vimrc: vimrc
     ~/.tmux.conf: tmux.conf
