@@ -1,0 +1,60 @@
+# =============================================================================
+# Brewfile.minimal — Configuration légère
+# =============================================================================
+# Idéal pour : machine secondaire, vieux Mac, VM, setup rapide
+# Philosophie : uniquement les outils CLI essentiels + apps GUI indispensables
+#
+# Installation :
+#   brew bundle --file=Brewfile.minimal
+# =============================================================================
+
+tap "homebrew/services"
+
+# ─── CLI — Shell & navigation ─────────────────────────────────────────────────
+brew "bat"          # Remplacement de cat avec coloration syntaxique
+brew "bat-extras"   # Scripts intégrant bat (batgrep, batman, batdiff…)
+brew "curl"         # Transferts HTTP/HTTPS/FTP
+brew "eza"          # Remplacement moderne de ls (icônes, couleurs, git)
+brew "less"         # Paginateur de texte
+brew "nano"         # Éditeur texte léger
+brew "tmux"         # Multiplexeur de terminal
+brew "wget"         # Téléchargeur HTTP avec reprise de téléchargement
+brew "zsh"          # Shell recommandé
+
+# ─── CLI — Git & qualité ──────────────────────────────────────────────────────
+brew "git"          # Gestionnaire de versions
+brew "gitleaks"     # Scan de secrets dans les dépôts git
+brew "gnupg"        # Chiffrement et signatures GPG
+brew "shellcheck"   # Linter statique pour scripts shell/bash
+
+# ─── Apps GUI — Indispensables ────────────────────────────────────────────────
+cask "appcleaner"             # Désinstalleur propre (supprime les fichiers associés)
+cask "firefox"                # Navigateur web
+cask "git-credential-manager" # Gestion centralisée des credentials git
+cask "iterm2"                 # Terminal avancé (split panes, profils, ligatures)
+cask "monitorcontrol"         # Contrôle luminosité/volume des écrans externes
+cask "the-unarchiver"         # Extraction zip, rar, 7z, tar et autres formats
+cask "visual-studio-code"     # Éditeur de code
+cask "vlc"                    # Lecteur multimédia universel
+
+# ─── Mac App Store ────────────────────────────────────────────────────────────
+mas "Quick Note", id: 1472935217   # Notes rapides depuis la barre de menu
+
+# ─── VS Code — Extensions essentielles ───────────────────────────────────────
+# Couverture : git, qualité de code, HTML, formatage, accessibilité
+vscode "aaron-bond.better-comments"           # Commentaires colorés par type (TODO, !, ?)
+vscode "christian-kohler.path-intellisense"   # Autocomplétion des chemins de fichiers
+vscode "dbaeumer.vscode-eslint"               # Linting JavaScript/TypeScript
+vscode "eamodio.gitlens"                      # Blame, historique et annotations git inline
+vscode "editorconfig.editorconfig"            # Respect des règles .editorconfig
+vscode "esbenp.prettier-vscode"               # Formatage automatique multi-langages
+vscode "formulahendry.auto-close-tag"         # Fermeture automatique des balises HTML/XML
+vscode "formulahendry.auto-rename-tag"        # Renommage simultané balise ouvrante/fermante
+vscode "github.github-vscode-theme"           # Thème GitHub officiel (dark/light)
+vscode "mhutchie.git-graph"                   # Visualisation graphique de l'arbre git
+vscode "oderwat.indent-rainbow"               # Colorisation des niveaux d'indentation
+vscode "pkief.material-icon-theme"            # Icônes de fichiers Material Design
+vscode "redhat.vscode-yaml"                   # Support YAML avec validation de schémas
+vscode "streetsidesoftware.code-spell-checker" # Correcteur orthographique en temps réel
+vscode "usernamehw.errorlens"                 # Affichage des erreurs directement sur la ligne
+vscode "yoavbls.pretty-ts-errors"             # Erreurs TypeScript lisibles et formatées

@@ -1,433 +1,372 @@
+# =============================================================================
+# Brewfile — Configuration normale (développement complet)
+# =============================================================================
+# Idéal pour : machine principale de développement
+# Inclut : tout le profil minimal + outils DevOps, cloud, frontend, backend
+# Les outils de pentest sont dans Brewfile.pentest (séparé, opt-in)
+#
+# Installation :
+#   brew bundle
+#
+# Pour installer également le profil minimal au préalable (optionnel,
+# toutes les formules sont déjà incluses ici) :
+#   brew bundle --file=Brewfile.minimal && brew bundle
+# =============================================================================
+
 tap "hashicorp/tap"
 tap "homebrew/services"
 tap "ngrok/ngrok"
 tap "pulumi/tap"
-tap "sidaf/pentest"
-tap "wpscanteam/tap"
-# Next-generation aircrack with lots of new features
-brew "aircrack-ng"
-# Automate deployment, configuration, and upgrading
-brew "ansible"
-# ARP scanning and fingerprinting tool
-brew "arp-scan"
-# Record and share terminal sessions
-brew "asciinema"
-# Automatic configure script builder
-brew "autoconf"
-# Clone of cat(1) with syntax highlighting and Git integration
-brew "bat"
-# Bash scripts that integrate bat with various command-line tools
-brew "bat-extras"
-# XML-based font configuration API for X Windows
-brew "fontconfig"
-# Apjanke's fork of the classic cowsay project
-brew "cowsay"
-# Get a file from an HTTP, HTTPS or FTP server
-brew "curl"
-# Pack, ship and run any application as a lightweight container
-brew "docker"
-# Perl lib for reading and writing EXIF metadata
-brew "exiftool"
-# Database of public exploits and corresponding vulnerable software
-brew "exploitdb"
-# Modern, maintained replacement for ls
-brew "eza"
-# Fast, simple, recursive content discovery tool written in Rust
-brew "feroxbuster"
-# Fast web fuzzer written in Go
-brew "ffuf"
-# Infamous electronic fortune-cookie generator
-brew "fortune"
-# Distributed revision control system
-brew "git"
-# Scan de secrets dans les dépôts git
-brew "gitleaks"
-# AVH edition of git-flow
-brew "git-flow-avh"
-# GNU Privacy Guard (OpenPGP)
-brew "gnupg"
-# Open source programming language to build simple/reliable/efficient software
-brew "go"
-# Directory/file & DNS busting tool written in Go
-brew "gobuster"
-# World's fastest and most advanced password recovery utility
-brew "hashcat"
-# User-friendly cURL replacement (command-line HTTP client)
-brew "httpie"
-# Website copier/offline browser
-brew "httrack"
-# Configurable static site generator
-brew "hugo"
-# Network logon cracker which supports many services
-brew "hydra"
-# Featureful UNIX password cracker
-brew "john"
-# Tool to move from `docker-compose` to Kubernetes
-brew "kompose"
-# Kubernetes command-line interface
-brew "kubernetes-cli"
-# Pager program similar to more
-brew "less"
-# C virtualization API
-brew "libvirt"
-# Mac App Store command-line interface
-brew "mas"
-# Run a Kubernetes cluster locally
-brew "minikube"
-# Node version management
-brew "n"
-# Free (GNU) replacement for the Pico text editor
-brew "nano"
-# Utility for managing network connections
-brew "netcat"
-# Web server scanner
-brew "nikto"
-# Port scanning utility for large networks
-brew "nmap"
-# Open-source, cross-platform JavaScript runtime environment
-brew "node"
-# SSL/TLS VPN implementing OSI layer 2 or 3 secure network extension
-brew "openvpn"
-# Swiss-army knife of markup format conversion
-brew "pandoc"
-# Execute binaries from Python packages in isolated environments
-brew "pipx"
-# Package compiler and linker metadata toolkit
-brew "pkgconf"
-# Fast, disk space efficient package manager
-brew "pnpm"
-# PDF rendering library (based on the xpdf-3.0 code base)
-brew "poppler"
-# Object-relational database system
-brew "postgresql@14"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.13"
-# Generic machine emulator and virtualizer
-brew "qemu"
-# Static analysis and lint tool, for (ba)sh scripts
-brew "shellcheck"
-# Daemon to provide vmnet.framework support for rootless QEMU
-brew "socket_vmnet"
-# Penetration testing for SQL injection and database servers
-brew "sqlmap"
-# User interface to the TELNET protocol
-brew "telnet"
-# Terminal multiplexer
-brew "tmux"
-# Easiest way to use Git. On any platform. Anywhere
-brew "ungit"
-# Watch files and take action when they change
-brew "watchman"
-# Internet file retriever
-brew "wget"
-# Network analyzer and capture tool - without graphical user interface
-brew "wireshark"
-# Malware identification and classification tool
-brew "yara"
-# UNIX shell (command interpreter)
-brew "zsh"
-# Terraform
-brew "hashicorp/tap/terraform"
-# Pulumi - Modern Infrastructure as Code. Any cloud, any language 
-brew "pulumi/tap/pulumi"
-brew "sidaf/pentest/netdiscover"
-brew "sidaf/pentest/ridenum"
-brew "sidaf/pentest/snmpcheck"
-# Black box WordPress vulnerability scanner
-brew "wpscanteam/tap/wpscan"
-# View, print, and comment on PDF documents
-cask "adobe-acrobat-reader"
-# Application uninstaller
-cask "appcleaner"
-# Chromium based browser
-cask "arc"
-# Cryptocurrency exchange
-cask "binance"
-# Web browser focusing on privacy
-cask "brave-browser"
-# Web security testing toolkit
-cask "burp-suite"
-# OpenAI's official ChatGPT desktop app
-cask "chatgpt"
-# Anthropic's official Claude AI desktop app
-cask "claude"
-# Terminal-based AI coding assistant
-cask "claude-code"
-# Browser for SQLite databases
-cask "db-browser-for-sqlite"
-# Voice and text chat software
-cask "discord"
-# App to build and share containerised applications and microservices
-cask "docker-desktop"
-# Client for the Dropbox cloud storage service
-cask "dropbox"
-# Launch builds and start simulators from your menu bar
-cask "expo-orbit"
-# Web browser
-cask "firefox"
-# Cross-platform Git credential storage for multiple hosting providers
-cask "git-credential-manager"
-# Desktop client for GitHub repositories
-cask "github"
-# Git client focusing on productivity
-cask "gitkraken"
-# Web browser
-cask "google-chrome"
-# Client for the Google Drive storage service
-cask "google-drive"
-# Hex editor focussing on speed
-cask "hex-fiend"
-# Terminal emulator as alternative to Apple's Terminal app
-cask "iterm2"
-# Free cross-platform office suite, fresh version
-cask "libreoffice"
-# Open-source Markdown editor
-cask "macdown"
-# Provides updates to various Microsoft products
-cask "microsoft-auto-update"
-# Meet, chat, call, and collaborate in just one place
-cask "microsoft-teams"
-# Word processor
-cask "microsoft-word"
-# Tool to control external monitor brightness & volume
-cask "monitorcontrol"
-# Reverse proxy, secure introspectable tunnels to localhost
-cask "ngrok"
-# App to write, plan, collaborate, and get organised
-cask "notion"
-# Calendar for professionals and teams
-cask "notion-calendar"
-# Email client integrated with Notion workspace
-cask "notion-mail"
-# Knowledge base that works on top of a local folder of plain text Markdown files
-cask "obsidian"
-# Collaboration platform for API development
-cask "postman"
-# Companion app for Flipper Zero devices
-cask "qflipper"
-# Remote management solution
-cask "royal-tsx"
-# Screen recorder
-cask "tella"
-# LaTeX editor
-cask "texmaker"
-# Unpacks archive files
-cask "the-unarchiver"
-# Virtual machines UI using QEMU
-cask "utm"
-# Development environment
-cask "vagrant"
-cask "vagrant-manager"
-# Gives Vagrant VMware plugin access to various VMware functionalities
-cask "vagrant-vmware-utility"
-# Virtualiser for arm64 hardware
-cask "virtualbox"
-# Open-source code editor
-cask "visual-studio-code"
-# Multimedia player
-cask "vlc"
-# Connect to Windows
-cask "windows-app"
-# Network protocol analyzer
-cask "wireshark-app"
-# Open-source version of the X.Org X Window System
-cask "xquartz"
-mas "CmdRef", id: 956853496
-mas "Data Jar", id: 1453273600
-mas "Developer", id: 640199958
-mas "Jayson", id: 1468691718
-mas "Kindle", id: 302584613
-mas "OX Drive", id: 818195014
-mas "Quick Note", id: 1472935217
-mas "Stockfish", id: 801463932
-mas "SysNetInfo", id: 1118988797
-mas "webextension", id: 6502697899
-mas "Xcode", id: 497799835
-vscode "10nates.ollama-autocoder"
-vscode "4ops.terraform"
+
+# ─── CLI — Shell & navigation ─────────────────────────────────────────────────
+brew "bat"          # Remplacement de cat avec coloration syntaxique
+brew "bat-extras"   # Scripts intégrant bat (batgrep, batman, batdiff…)
+brew "curl"         # Transferts HTTP/HTTPS/FTP
+brew "eza"          # Remplacement moderne de ls (icônes, couleurs, git)
+brew "less"         # Paginateur de texte
+brew "nano"         # Éditeur texte léger
+brew "tmux"         # Multiplexeur de terminal
+brew "wget"         # Téléchargeur HTTP avec reprise de téléchargement
+brew "zsh"          # Shell recommandé
+
+# ─── CLI — Git & qualité ──────────────────────────────────────────────────────
+brew "git"          # Gestionnaire de versions
+brew "git-flow-avh" # Extensions git-flow (AVH edition — branching model)
+brew "gitleaks"     # Scan de secrets dans les dépôts git
+brew "gnupg"        # Chiffrement et signatures GPG
+brew "shellcheck"   # Linter statique pour scripts shell/bash
+
+# ─── CLI — Langages & runtimes ────────────────────────────────────────────────
+brew "go"           # Langage Go (compilateur + outils)
+brew "n"            # Gestionnaire de versions Node.js
+brew "node"         # Node.js (version Homebrew, gérée aussi via n)
+brew "python@3.13"  # Python 3.13
+brew "pipx"         # Exécution d'outils Python dans des envs isolés
+
+# ─── CLI — Infrastructure & DevOps ───────────────────────────────────────────
+brew "ansible"                  # Automatisation déploiements et configurations
+brew "autoconf"                 # Générateur de scripts de configuration
+brew "docker"                   # Runtime de conteneurs (CLI)
+brew "kompose"                  # Migration docker-compose → Kubernetes
+brew "kubernetes-cli"           # kubectl — CLI Kubernetes
+brew "libvirt"                  # API de virtualisation C (pilote QEMU/KVM)
+brew "mas"                      # CLI pour le Mac App Store
+brew "minikube"                 # Cluster Kubernetes local pour développement
+brew "pkgconf"                  # Métadonnées compilateur/linker (remplace pkg-config)
+brew "qemu"                     # Émulateur et virtualiseur générique
+brew "socket_vmnet"             # Daemon vmnet.framework pour QEMU rootless
+brew "hashicorp/tap/terraform"  # Infrastructure as Code HashiCorp
+brew "pulumi/tap/pulumi"        # Infrastructure as Code multi-cloud (IaC moderne)
+
+# ─── CLI — Web & réseau ───────────────────────────────────────────────────────
+brew "httpie"       # Client HTTP en ligne de commande (remplace curl pour le dev)
+brew "pnpm"         # Gestionnaire de paquets Node.js rapide et économe en espace
+
+# ─── CLI — Data & documents ───────────────────────────────────────────────────
+brew "exiftool"     # Lecture/écriture de métadonnées EXIF (images, vidéos)
+brew "pandoc"       # Conversion de formats (Markdown → PDF, DOCX, HTML…)
+brew "poppler"      # Bibliothèque PDF (pdfinfo, pdftotext, pdftoppm…)
+brew "postgresql@14" # Base de données PostgreSQL 14
+
+# ─── CLI — Générateurs de site & contenus ────────────────────────────────────
+brew "hugo"         # Générateur de site statique ultra-rapide (Go)
+
+# ─── CLI — Utilitaires ────────────────────────────────────────────────────────
+brew "asciinema"    # Enregistrement et partage de sessions terminal
+brew "autoconf"     # Constructeur de scripts configure
+brew "cowsay"       # Vache ASCII qui parle (fortune | cowsay 🐮)
+brew "fontconfig"   # API de configuration de polices
+brew "fortune"      # Générateur de citations aléatoires
+brew "telnet"       # Protocole TELNET (test de ports, debug réseau)
+brew "ungit"        # Interface web pour git (visual git log)
+brew "watchman"     # Surveillance de fichiers et déclenchement d'actions
+
+# ─── Apps GUI — Productivité & communication ──────────────────────────────────
+cask "appcleaner"         # Désinstalleur propre
+cask "discord"            # Chat vocal et textuel (communautés dev)
+cask "dropbox"            # Stockage cloud et synchronisation
+cask "google-drive"       # Stockage cloud Google
+cask "libreoffice"        # Suite bureautique open source
+cask "macdown"            # Éditeur Markdown avec prévisualisation live
+cask "microsoft-auto-update" # Mises à jour automatiques des apps Microsoft
+cask "microsoft-teams"    # Visioconférence et collaboration Microsoft
+cask "microsoft-word"     # Traitement de texte Microsoft
+cask "monitorcontrol"     # Contrôle luminosité/volume des écrans externes
+cask "notion"             # Base de connaissance et gestion de projet
+cask "notion-calendar"    # Agenda intégré à Notion
+cask "notion-mail"        # Client mail intégré à Notion
+cask "obsidian"           # Prise de notes en Markdown (graphe de connaissances)
+cask "royal-tsx"          # Gestionnaire de connexions distantes (SSH, RDP, VNC)
+cask "tella"              # Enregistrement vidéo d'écran
+cask "texmaker"           # Éditeur LaTeX
+
+# ─── Apps GUI — Navigateurs ───────────────────────────────────────────────────
+cask "arc"            # Navigateur Chromium (gestion par espaces)
+cask "brave-browser"  # Navigateur axé vie privée (bloqueur ads intégré)
+cask "firefox"        # Navigateur web
+cask "google-chrome"  # Navigateur Google Chrome
+
+# ─── Apps GUI — Développement ─────────────────────────────────────────────────
+cask "db-browser-for-sqlite" # Interface graphique pour bases SQLite
+cask "docker-desktop"        # Docker avec UI (orchestrateur de conteneurs)
+cask "expo-orbit"            # Builds et simulateurs Expo/React Native depuis la menu bar
+cask "git-credential-manager" # Gestion centralisée des credentials git
+cask "github"                # Client desktop GitHub
+cask "gitkraken"             # Client git graphique avancé
+cask "hex-fiend"             # Éditeur hexadécimal (analyse binaire)
+cask "iterm2"                # Terminal avancé
+cask "ngrok"                 # Tunnels HTTPS vers localhost (webhooks, démos)
+cask "postman"               # Plateforme de développement et test d'API
+cask "visual-studio-code"    # Éditeur de code
+
+# ─── Apps GUI — Cloud & virtualisation ────────────────────────────────────────
+cask "utm"                     # VMs macOS/Linux/Windows (arm64, basé sur QEMU)
+cask "vagrant"                 # Gestion d'environnements de développement virtualisés
+cask "vagrant-manager"         # Interface menu bar pour Vagrant
+cask "vagrant-vmware-utility"  # Plugin Vagrant pour VMware
+cask "virtualbox"              # Hyperviseur x86 open source
+cask "windows-app"             # Connexion bureau à distance Windows (ex RDP)
+cask "xquartz"                 # Système X Window pour macOS (apps Linux via X11)
+
+# ─── Apps GUI — IA & assistants ───────────────────────────────────────────────
+cask "chatgpt"      # App desktop ChatGPT officielle (OpenAI)
+cask "claude"       # App desktop Claude officielle (Anthropic)
+cask "claude-code"  # Assistant IA terminal Claude Code
+
+# ─── Apps GUI — Utilitaires & médias ─────────────────────────────────────────
+cask "adobe-acrobat-reader" # Lecteur PDF Adobe
+cask "appcleaner"           # Désinstalleur propre (supprime les fichiers associés)
+cask "binance"              # Exchange crypto
+cask "the-unarchiver"       # Extraction d'archives (zip, rar, 7z, tar…)
+cask "vlc"                  # Lecteur multimédia universel
+
+# ─── Mac App Store ────────────────────────────────────────────────────────────
+mas "CmdRef", id: 956853496           # Référence de commandes (cheatsheets)
+mas "Data Jar", id: 1453273600        # Stockage de données pour Raccourcis Siri
+mas "Developer", id: 640199958        # App développeur Apple officielle
+mas "Jayson", id: 1468691718          # Viewer/éditeur JSON interactif
+mas "Kindle", id: 302584613           # Liseuse Kindle
+mas "OX Drive", id: 818195014         # Client Open-Xchange Drive
+mas "Quick Note", id: 1472935217      # Notes rapides depuis la barre de menu
+mas "Stockfish", id: 801463932        # Moteur d'échecs open source
+mas "SysNetInfo", id: 1118988797      # Informations système et réseau
+mas "webextension", id: 6502697899    # Capacities Web Extension
+mas "Xcode", id: 497799835            # IDE Apple (requis pour iOS/macOS dev)
+
+# ─── VS Code — Extensions ────────────────────────────────────────────────────
+# Essentielles (reprises du profil minimal)
 vscode "aaron-bond.better-comments"
-vscode "adpyke.codesnap"
-vscode "albert.tabout"
-vscode "alefragnani.bookmarks"
-vscode "alexcvzz.vscode-sqlite"
-vscode "amazonwebservices.amazon-q-vscode"
-vscode "amazonwebservices.aws-toolkit-vscode"
-vscode "anthropic.claude-code"
-vscode "antstack.aws-js-code-snippet"
-vscode "astro-build.astro-vscode"
-vscode "austenc.tailwind-docs"
-vscode "azurepaas-tools.vscode-learncloud"
-vscode "batisteo.vscode-django"
-vscode "bierner.markdown-yaml-preamble"
-vscode "binarybytes.snippets"
-vscode "boto3typed.boto3-ide"
-vscode "bradlc.vscode-tailwindcss"
+vscode "christian-kohler.path-intellisense"
+vscode "dbaeumer.vscode-eslint"
+vscode "eamodio.gitlens"
+vscode "editorconfig.editorconfig"
+vscode "esbenp.prettier-vscode"
+vscode "formulahendry.auto-close-tag"
+vscode "formulahendry.auto-rename-tag"
+vscode "github.github-vscode-theme"
+vscode "mhutchie.git-graph"
+vscode "oderwat.indent-rainbow"
+vscode "pkief.material-icon-theme"
+vscode "redhat.vscode-yaml"
+vscode "streetsidesoftware.code-spell-checker"
+vscode "usernamehw.errorlens"
+vscode "yoavbls.pretty-ts-errors"
+# Langages — TypeScript / JavaScript
 vscode "burkeholland.simple-react-snippets"
 vscode "cardinal90.multi-cursor-case-preserve"
 vscode "christian-kohler.npm-intellisense"
-vscode "christian-kohler.path-intellisense"
-vscode "codium.codium"
-vscode "congnguyendinh0.aws-amplify-flutter-snippet"
-vscode "corernd.wai-vscode"
-vscode "ctc.vscode-tree-extension"
-vscode "cungen.markdown-slide"
-vscode "dalirnet.rtl-markdown"
-vscode "danielsanmedium.dscodegpt"
-vscode "dannysteenman.cloudformation-yaml-snippets"
-vscode "davidanson.vscode-markdownlint"
-vscode "dbaeumer.vscode-eslint"
-vscode "deerawan.vscode-dash"
-vscode "docker.docker"
-vscode "donjayamanne.githistory"
+vscode "dsznajder.es7-react-js-snippets"
+vscode "formulahendry.code-runner"
+vscode "herrlax.ts-interface-from-class"
+vscode "infeng.vscode-react-typescript"
+vscode "mattpocock.ts-error-translator"
+vscode "mike-co.import-sorter"
+vscode "ms-vscode.vscode-typescript-next"
+vscode "rodrigovallades.es7-react-js-snippets"
+vscode "rvest.vs-code-prettier-eslint"
+vscode "sgryt.typescript-pack"
+vscode "shibu.nextjs-js-ts-code-snippets"
+vscode "steoates.autoimport"
+vscode "xabikos.javascriptsnippets"
+# Langages — Python
 vscode "donjayamanne.python-environment-manager"
 vscode "donjayamanne.python-extension-pack"
-vscode "dsznajder.es7-react-js-snippets"
-vscode "eamodio.gitlens"
-vscode "ecmel.vscode-html-css"
-vscode "editorconfig.editorconfig"
-vscode "eliostruyf.vscode-front-matter"
-vscode "eridem.vscode-postman"
-vscode "esbenp.prettier-vscode"
-vscode "fallenmax.mithril-emmet"
-vscode "fantasy.markdown-all-in-one-for-web"
-vscode "firefox-devtools.vscode-firefox-debug"
-vscode "firsttris.vscode-jest-runner"
-vscode "foam.foam-vscode"
-vscode "formulahendry.auto-close-tag"
-vscode "formulahendry.auto-rename-tag"
-vscode "formulahendry.code-runner"
-vscode "formulahendry.docker-explorer"
-vscode "gera2ld.markmap-vscode"
-vscode "gitbook.gitbook-vscode"
-vscode "github.codespaces"
-vscode "github.github-vscode-theme"
-vscode "github.remotehub"
-vscode "github.vscode-github-actions"
-vscode "gluestack.gluestack-vscode"
-vscode "golang.go"
-vscode "grapecity.gc-excelviewer"
-vscode "gsgupta.opencv-snippets"
-vscode "hall.draw"
-vscode "hashicorp.terraform"
-vscode "hediet.vscode-drawio"
-vscode "henriquebruno.github-repository-manager"
-vscode "herrlax.ts-interface-from-class"
-vscode "hnw.vscode-auto-open-markdown-preview"
-vscode "humao.rest-client"
-vscode "igorsbitnev.error-gutters"
-vscode "infeng.vscode-react-typescript"
-vscode "itayadler.terraform-ssm"
-vscode "jabrythehutt.awsrd"
-vscode "jacobdufault.fuzzy-search"
-vscode "jeff-hykin.better-dockerfile-syntax"
-vscode "john-goldsmith.vscode-aws-cloudformation-auto-template-generator"
 vscode "johnguo.simply-view-image-for-python-opencv-debugging"
-vscode "johnpapa.vscode-peacock"
 vscode "kevinrose.vsc-python-indent"
-vscode "kisstkondoros.vscode-codemetrics"
-vscode "loganarnett.lambda-snippets"
-vscode "mark-tucker.aws-cli-configure"
-vscode "marp-team.marp-vscode"
-vscode "mattpocock.ts-error-translator"
-vscode "mhutchie.git-graph"
-vscode "mike-co.import-sorter"
-vscode "monish.regexsnippets"
-vscode "ms-azuretools.vscode-containers"
-vscode "ms-azuretools.vscode-docker"
 vscode "ms-python.debugpy"
 vscode "ms-python.python"
 vscode "ms-python.vscode-pylance"
 vscode "ms-python.vscode-python-envs"
-vscode "ms-toolsai.jupyter"
-vscode "ms-toolsai.jupyter-keymap"
-vscode "ms-toolsai.jupyter-renderers"
-vscode "ms-toolsai.vscode-jupyter-cell-tags"
-vscode "ms-toolsai.vscode-jupyter-slideshow"
-vscode "ms-vscode-remote.remote-containers"
-vscode "ms-vscode-remote.remote-ssh"
-vscode "ms-vscode-remote.remote-ssh-edit"
-vscode "ms-vscode-remote.remote-wsl"
-vscode "ms-vscode-remote.vscode-remote-extensionpack"
-vscode "ms-vscode.azure-repos"
+vscode "njpwerner.autodocstring"
+vscode "gsgupta.opencv-snippets"
+# Langages — Go
+vscode "golang.go"
+# Langages — Rust
+vscode "rust-lang.rust-analyzer"
+# Langages — C/C++
 vscode "ms-vscode.cmake-tools"
 vscode "ms-vscode.cpp-devtools"
 vscode "ms-vscode.cpptools"
 vscode "ms-vscode.cpptools-extension-pack"
 vscode "ms-vscode.cpptools-themes"
 vscode "ms-vscode.makefile-tools"
+vscode "twxs.cmake"
+# Langages — Web (HTML/CSS)
+vscode "austenc.tailwind-docs"
+vscode "bradlc.vscode-tailwindcss"
+vscode "ecmel.vscode-html-css"
+vscode "formulahendry.docker-explorer"
+vscode "ritwickdey.liveserver"
+vscode "stylelint.vscode-stylelint"
+vscode "voorjaar.windicss-intellisense"
+# Langages — Vue / Angular
+vscode "nrwl.angular-console"
+vscode "vue.volar"
+# Langages — Astro / MDX / Jinja
+vscode "astro-build.astro-vscode"
+vscode "unifiedjs.vscode-mdx"
+vscode "wholroyd.jinja"
+# Langages — Django / Python web
+vscode "batisteo.vscode-django"
+# Langages — Markdown
+vscode "bierner.markdown-yaml-preamble"
+vscode "cungen.markdown-slide"
+vscode "dalirnet.rtl-markdown"
+vscode "davidanson.vscode-markdownlint"
+vscode "fantasy.markdown-all-in-one-for-web"
+vscode "gera2ld.markmap-vscode"
+vscode "gitbook.gitbook-vscode"
+vscode "hnw.vscode-auto-open-markdown-preview"
+vscode "marp-team.marp-vscode"
+vscode "pomdtr.markdown-kroki"
+vscode "shd101wyy.markdown-preview-enhanced"
+vscode "takumii.markdowntable"
+vscode "tchayen.markdown-links"
+vscode "toramameseven.markdown-docx"
+vscode "yzane.markdown-pdf"
+vscode "yzhang.markdown-all-in-one"
+vscode "zhaouv.vscode-markdown-draw"
+# Langages — YAML / TOML / JSON
+vscode "tamasfe.even-better-toml"
+vscode "yamlhunter.yamltemplatemaker"
+vscode "zainchen.json"
+vscode "grapecity.gc-excelviewer"
+# Conteneurs & DevOps
+vscode "docker.docker"
+vscode "jeff-hykin.better-dockerfile-syntax"
+vscode "ms-azuretools.vscode-containers"
+vscode "ms-azuretools.vscode-docker"
+vscode "ms-vscode-remote.remote-containers"
+vscode "ms-vscode-remote.remote-ssh"
+vscode "ms-vscode-remote.remote-ssh-edit"
+vscode "ms-vscode-remote.remote-wsl"
+vscode "ms-vscode-remote.vscode-remote-extensionpack"
 vscode "ms-vscode.remote-explorer"
 vscode "ms-vscode.remote-repositories"
 vscode "ms-vscode.remote-server"
-vscode "ms-vscode.vscode-js-profile-flame"
-vscode "ms-vscode.vscode-typescript-next"
+vscode "okteto.remote-kubernetes"
+vscode "p1c2u.docker-compose"
+vscode "techiecouch.docker-essentials"
+# Infrastructure as Code
+vscode "4ops.terraform"
+vscode "dannysteenman.cloudformation-yaml-snippets"
+vscode "hashicorp.terraform"
+vscode "itayadler.terraform-ssm"
+vscode "loganarnett.lambda-snippets"
+vscode "sameeramin.cdk-snippets-for-python"
+# AWS
+vscode "amazonwebservices.amazon-q-vscode"
+vscode "amazonwebservices.aws-toolkit-vscode"
+vscode "antstack.aws-js-code-snippet"
+vscode "boto3typed.boto3-ide"
+vscode "congnguyendinh0.aws-amplify-flutter-snippet"
+vscode "jabrythehutt.awsrd"
+vscode "john-goldsmith.vscode-aws-cloudformation-auto-template-generator"
+vscode "mark-tucker.aws-cli-configure"
+vscode "ms-vscode.azure-repos"
 vscode "mziyabo.vscode-codedeploy"
 vscode "necatiarslan.aws-access-vscode-extension"
 vscode "necatiarslan.aws-s3-vscode-extension"
-vscode "njpwerner.autodocstring"
-vscode "node-projects.vscode-designer-addon"
-vscode "nrwl.angular-console"
-vscode "oderwat.indent-rainbow"
-vscode "okteto.remote-kubernetes"
-vscode "oouo-diogo-perdigao.docthis"
-vscode "orta.vscode-jest"
-vscode "p1c2u.docker-compose"
-vscode "pkief.material-icon-theme"
-vscode "pnp.polacode"
-vscode "pomdtr.excalidraw-editor"
-vscode "pomdtr.markdown-kroki"
-vscode "postman.postman-for-vscode"
 vscode "poyashad.display-aws-amplify-environment"
-vscode "prisma.prisma"
-vscode "quicktype.quicktype"
-vscode "qwtel.sqlite-viewer"
 vscode "rafaelrodrigues.convertto-ssm"
 vscode "rafwilinski.dynamodb-vscode-snippets"
-vscode "rangav.vscode-thunder-client"
-vscode "redhat.vscode-yaml"
-vscode "ritwickdey.liveserver"
-vscode "rodrigovallades.es7-react-js-snippets"
-vscode "rust-lang.rust-analyzer"
-vscode "rvest.vs-code-prettier-eslint"
-vscode "sameeramin.cdk-snippets-for-python"
-vscode "searking.preview-vscode"
-vscode "sgryt.typescript-pack"
-vscode "shd101wyy.markdown-preview-enhanced"
-vscode "shibu.nextjs-js-ts-code-snippets"
-vscode "shinotatwu-ds.file-tree-generator"
-vscode "sonarsource.sonarlint-vscode"
-vscode "steoates.autoimport"
-vscode "streetsidesoftware.code-spell-checker"
-vscode "stylelint.vscode-stylelint"
-vscode "suhelmakkad.shadcn-ui"
-vscode "takumii.markdowntable"
-vscode "tamasfe.even-better-toml"
-vscode "tchayen.markdown-links"
-vscode "techiecouch.docker-essentials"
-vscode "technovangelist.ollamamodelfile"
 vscode "teetangh.aws-essentials"
-vscode "tomoki1207.pdf"
-vscode "tonybaloney.vscode-pets"
-vscode "toramameseven.markdown-docx"
-vscode "twxs.cmake"
-vscode "tyriar.lorem-ipsum"
-vscode "unifiedjs.vscode-mdx"
-vscode "usernamehw.errorlens"
-vscode "voorjaar.windicss-intellisense"
 vscode "vscode-aws-console.vscode-aws-console"
+vscode "azurepaas-tools.vscode-learncloud"
+# Base de données
+vscode "alexcvzz.vscode-sqlite"
+vscode "qwtel.sqlite-viewer"
+# Test & qualité
+vscode "firsttris.vscode-jest-runner"
+vscode "kisstkondoros.vscode-codemetrics"
+vscode "orta.vscode-jest"
+vscode "sonarsource.sonarlint-vscode"
+# Git avancé
+vscode "donjayamanne.githistory"
+vscode "github.codespaces"
+vscode "github.remotehub"
+vscode "github.vscode-github-actions"
+vscode "henriquebruno.github-repository-manager"
+vscode "vsls-contrib.gitdoc"
+# API & HTTP
+vscode "eridem.vscode-postman"
+vscode "humao.rest-client"
+vscode "postman.postman-for-vscode"
+vscode "rangav.vscode-thunder-client"
+# Jupyter & data science
+vscode "ms-toolsai.jupyter"
+vscode "ms-toolsai.jupyter-keymap"
+vscode "ms-toolsai.jupyter-renderers"
+vscode "ms-toolsai.vscode-jupyter-cell-tags"
+vscode "ms-toolsai.vscode-jupyter-slideshow"
+# IA & assistance au code
+vscode "10nates.ollama-autocoder"
+vscode "anthropic.claude-code"
+vscode "codium.codium"
+vscode "danielsanmedium.dscodegpt"
+vscode "technovangelist.ollamamodelfile"
+vscode "zhang-renyang.chat-gpt"
+# UI & thèmes
+vscode "adpyke.codesnap"
+vscode "corernd.wai-vscode"
+vscode "igorsbitnev.error-gutters"
+vscode "jacobdufault.fuzzy-search"
+vscode "johnpapa.vscode-peacock"
+vscode "pnp.polacode"
+vscode "tonybaloney.vscode-pets"
 vscode "vscode-extensions-farshid.vscode-extensions-farshid"
 vscode "vscode-icons-team.vscode-icons"
-vscode "vsls-contrib.gitdoc"
-vscode "vue.volar"
+vscode "wattenberger.footsteps"
+vscode "xuangeaha.vsmarketplace-badges"
+# Productivité & snippets
+vscode "albert.tabout"
+vscode "alefragnani.bookmarks"
+vscode "binarybytes.snippets"
+vscode "ctc.vscode-tree-extension"
+vscode "deerawan.vscode-dash"
+vscode "eliostruyf.vscode-front-matter"
+vscode "fallenmax.mithril-emmet"
+vscode "foam.foam-vscode"
+vscode "jacobdufault.fuzzy-search"
+vscode "monish.regexsnippets"
+vscode "node-projects.vscode-designer-addon"
+vscode "oouo-diogo-perdigao.docthis"
+vscode "quicktype.quicktype"
+vscode "searking.preview-vscode"
+vscode "shinotatwu-ds.file-tree-generator"
+vscode "tyriar.lorem-ipsum"
 vscode "wallabyjs.console-ninja"
 vscode "wallabyjs.quokka-vscode"
-vscode "wattenberger.footsteps"
-vscode "wholroyd.jinja"
-vscode "xabikos.javascriptsnippets"
-vscode "xuangeaha.vsmarketplace-badges"
-vscode "yamlhunter.yamltemplatemaker"
-vscode "yoavbls.pretty-ts-errors"
-vscode "yzane.markdown-pdf"
-vscode "yzhang.markdown-all-in-one"
-vscode "zainchen.json"
-vscode "zhang-renyang.chat-gpt"
-vscode "zhaouv.vscode-markdown-draw"
+# Diagrammes & visualisation
+vscode "hall.draw"
+vscode "hediet.vscode-drawio"
+vscode "pomdtr.excalidraw-editor"
+# Débogage navigateur
+vscode "firefox-devtools.vscode-firefox-debug"
+vscode "ms-vscode.vscode-js-profile-flame"
+# PDF & documents
+vscode "tomoki1207.pdf"
+# Autres langages
+vscode "gluestack.gluestack-vscode"
+vscode "prisma.prisma"
+vscode "suhelmakkad.shadcn-ui"
