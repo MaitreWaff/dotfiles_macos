@@ -1,34 +1,33 @@
 #!/usr/bin/env zsh
 
-echo "\n<<< Starting ZSH Setup >>>\n"
+set -euo pipefail
 
-# Installation unnecessary; it's in the Brewfile.
+echo "\n<<< Configuration de zsh comme shell par défaut... >>>\n"
 
-if grep -Fxq '/opt/homebrew/bin/zsh' '/etc/shells'; then
-  echo '/opt/homebrew/bin/zsh already exists in /etc/shells'
+ZSH_PATH='/opt/homebrew/bin/zsh'
+
+# Ajouter zsh Homebrew à /etc/shells s'il n'y est pas déjà
+if grep -Fxq "$ZSH_PATH" '/etc/shells'; then
+  echo "$ZSH_PATH déjà présent dans /etc/shells"
 else
-  echo "Enter superuser (sudo) password to edit /etc/shells"
-  #echo '/usr/local/bin/zsh' | sudo tee -a '/etc/shells' > /dev/null
-  echo '/opt/homebrew/bin/zsh' | sudo tee -a '/etc/shells' > /dev/null
+  echo "Ajout de $ZSH_PATH dans /etc/shells (mot de passe sudo requis)"
+  echo "$ZSH_PATH" | sudo tee -a '/etc/shells' > /dev/null
 fi
 
-if [ "$SHELL" = '/opt/homebrew/bin/zsh' ]; then
-  echo '$SHELL is already /opt/homebrew/bin/zsh'
+# Définir zsh Homebrew comme shell par défaut
+if [ "$SHELL" = "$ZSH_PATH" ]; then
+  echo "Shell par défaut déjà configuré sur $ZSH_PATH"
 else
-  echo "Enter superuser (sudo) password to edit /etc/shells"
-  chsh -s '/opt/homebrew/bin/zsh'
+  echo "Changement du shell par défaut vers $ZSH_PATH (mot de passe sudo requis)"
+  chsh -s "$ZSH_PATH"
 fi
 
+# Symlinker sh → zsh pour la compatibilité
 if sh --version | grep -q zsh; then
-  echo '/private/var/select/sh already linked to /bin/zsh'
+  echo '/private/var/select/sh déjà lié à zsh'
 else
-  echo "Enter superuser (sudo) password to symlink sh to zsh"
-  # Looked cute, might delete later, idk
-  #ln -s /usr/local/bin/zsh /private/var/select/sh
+  echo "Symlink de sh → zsh (mot de passe sudo requis)"
   sudo ln -sfv /bin/zsh /private/var/select/sh
-
-  # I'd like for this to work instead.
-  # sudo ln -sfv /opt/homebrew/bin/zsh /private/var/select/sh
 fi
 
-echo "\n<<< ZSH Setup Done!!!. >>>\n"
+echo "\n<<< ZSH Setup terminé. >>>\n"

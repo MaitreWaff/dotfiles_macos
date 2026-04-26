@@ -1,29 +1,33 @@
 #!/usr/bin/env zsh
 
-echo "\n<<< Starting Node Setup >>>\n"
+set -euo pipefail
 
-# Installation unnecessary; it's in the Brewfile.
-# See zshrc for N_PREFIX variable and addition to $path array.
+echo "\n<<< Configuration de Node.js... >>>\n"
+
+# n est installé via Homebrew (Brewfile)
+# N_PREFIX et PATH sont définis dans zshrc
 
 if exists node; then
-  echo "Node $(node --version) & NPM $(npm --version) already installed"
+  echo "Node $(node --version) & NPM $(npm --version) déjà installés"
 else
-  echo "Installing Node & NPM with n..."
+  echo "Installation de Node (latest + LTS) via n..."
   n latest
   n lts
 fi
 
-# Installing Global NPM Packages
-npm install --global firebase-tools
-npm install --global @angular/cli
-npm install --global @ionic/cli
-npm install --global typescript
-npm install --global json-server
-npm install --global http-server
-npm install --global trash-cli
-npm install --global yarn
+echo "Installation des paquets npm globaux..."
 
-echo "Global NPM Packages Installed:"
+npm install --global \
+  firebase-tools \
+  @angular/cli \
+  @ionic/cli \
+  typescript \
+  json-server \
+  http-server \
+  trash-cli \
+  yarn
+
+echo "\nPaquets npm globaux installés :"
 npm list --global --depth=0
 
-echo "\n<<< Node Setup Done!!!. >>>\n"
+echo "\n<<< Node Setup terminé. >>>\n"

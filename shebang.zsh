@@ -1,15 +1,8 @@
 #!/usr/bin/env zsh
 
-echo "\n<<< Running $0 >>>\n"
+set -euo pipefail
+
+# Script de diagnostic — version zsh et environnement de base
 echo "ZSH_VERSION = $ZSH_VERSION"
-echo "The current shell is: $(ps $$ -ocomm=)"
-
-# exists brew && echo 'excellent!!!' || echo 'bogus'
-# exists nonexistent && echo 'excellent' || echo 'bogus!!!'
-
-# which exists
-
-sleep 1; echo 'done';
-
-echo $HOME
-
+echo "Shell courant : $(ps $$ -ocomm=)"
+echo "HOME = $HOME"
