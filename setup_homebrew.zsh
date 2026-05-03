@@ -2,6 +2,16 @@
 
 set -euo pipefail
 
+# Usage : ./setup_homebrew.zsh [Brewfile|Brewfile.minimal|Brewfile.pentest]
+# Par défaut : Brewfile (profil dev complet)
+BREWFILE="${1:-Brewfile}"
+BASEDIR="$(cd "$(dirname "$0")" && pwd)"
+
+if [[ ! -f "$BASEDIR/$BREWFILE" ]]; then
+  echo "Erreur : $BREWFILE introuvable dans $BASEDIR" >&2
+  exit 1
+fi
+
 if exists brew; then
   echo "\n<<< Homebrew déjà installé, passage au bundle... >>>\n"
 else
@@ -9,8 +19,8 @@ else
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-echo "\n<<< Installation des paquets Homebrew (profil normal)... >>>\n"
+echo "\n<<< Installation des paquets depuis $BREWFILE... >>>\n"
 
-brew bundle --file=Brewfile --verbose
+brew bundle --file="$BASEDIR/$BREWFILE" --verbose
 
-echo "\n<<< Homebrew Setup terminé. >>>\n"
+echo "\n<<< Homebrew Setup terminé ($BREWFILE). >>>\n"

@@ -1,0 +1,100 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROFILE="${1:-}"
+
+# ─── Aide ─────────────────────────────────────────────────────────────────────
+usage() {
+  cat <<EOF
+
+Usage : $(basename "$0") <profil>
+
+  minimal   Symlinks + zsh + CLI essentiels       (machine légère, VM, prêt)
+  dev       Symlinks + zsh + dev complet + Node   (machine principale — défaut)
+  pentest   Outils sécurité offensive              (add-on, après dev)
+
+Exemples :
+  $(basename "$0") dev        # nouvelle machine de développement
+  $(basename "$0") minimal    # setup express sur un vieux Mac ou VM
+  $(basename "$0") pentest    # ajouter les outils pentest sur une machine dev
+
+EOF
+}
+
+# ─── Fonctions partagées ──────────────────────────────────────────────────────
+run_symlinks() {
+  echo "\n>>> Création des symlinks (Dotbot)...\n"
+  "$BASEDIR/install"
+}
+
+run_zsh() {
+  echo "\n>>> Configuration de zsh comme shell par défaut...\n"
+  "$BASEDIR/setup_zsh.zsh"
+}
+
+run_brew() {
+  echo "\n>>> Installation Homebrew — $1...\n"
+  "$BASEDIR/setup_homebrew.zsh" "$1"
+}
+
+run_node() {
+  echo "\n>>> Configuration Node.js + packages npm globaux...\n"
+  "$BASEDIR/setup_node.zsh"
+}
+
+# ─── Profils ──────────────────────────────────────────────────────────────────
+case "$PROFILE" in
+
+  minimal)
+    echo "\n=============================="
+    echo " PROFIL : MINIMAL"
+    echo "==============================\n"
+    run_symlinks
+    run_zsh
+    run_brew Brewfile.minimal
+    echo "\n✅  Profil minimal installé."
+    echo "    Relance ton terminal pour activer zsh.\n"
+    ;;
+
+  dev)
+    echo "\n=============================="
+    echo " PROFIL : DEV"
+    echo "==============================\n"
+    run_symlinks
+    run_zsh
+    run_brew Brewfile
+    run_node
+    echo "\n✅  Profil dev installé."
+    echo "    Relance ton terminal pour activer zsh.\n"
+    ;;
+
+  pentest)
+    echo "\n=============================="
+    echo " PROFIL : PENTEST (add-on)"
+    echo "==============================\n"
+    echo "⚠️  Ce profil installe des outils offensifs."
+    echo "    À utiliser uniquement dans un cadre légal : audits autorisés,"
+    echo "    CTF, bug bounty, lab personnel.\n"
+    read -r -p "Confirmer l'installation ? [y/N] " confirm
+    if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
+      echo "Annulé."
+      exit 0
+    fi
+    run_brew Brewfile.pentest
+    echo "\n✅  Outils pentest installés.\n"
+    ;;
+
+  ""|--help|-h)
+    usage
+    exit 0
+    ;;
+
+  *)
+    echo "Erreur : profil inconnu « $PROFILE »" >&2
+    usage
+    exit 1
+    ;;
+
+esac

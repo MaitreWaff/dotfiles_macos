@@ -13,16 +13,34 @@ Trois profils Homebrew pour s'adapter à chaque contexte : minimal, développeme
 
 ---
 
-## Installation rapide
+## Installation
+
+### Cloner le repo
 
 ```bash
 git clone git@github.com:MaitreWaff/dotfiles_macos.git ~/.dotfiles
 cd ~/.dotfiles
 git submodule update --init --recursive
-./install
 ```
 
-`./install` crée les symlinks, configure zsh et installe le profil Homebrew **normal** par défaut.
+### Choisir un profil
+
+```bash
+./install-profile dev       # machine de dev principale (recommandé)
+./install-profile minimal   # machine légère, VM, setup express
+./install-profile pentest   # outils pentest (add-on, après dev)
+```
+
+Chaque profil enchaîne automatiquement les étapes nécessaires :
+
+| Étape | minimal | dev | pentest |
+|---|:---:|:---:|:---:|
+| Symlinks dotfiles | ✅ | ✅ | — |
+| zsh par défaut | ✅ | ✅ | — |
+| Homebrew + paquets | Brewfile.minimal | Brewfile | Brewfile.pentest |
+| Node.js + npm globals | — | ✅ | — |
+
+> **Note :** `./install` seul ne fait que les symlinks (Dotbot). Utilise `./install-profile` pour un setup complet.
 
 ---
 
@@ -36,6 +54,8 @@ Idéal pour : vieux Mac, VM, machine de prêt, setup express.
 Philosophie : uniquement l'essentiel, rien de lourd.
 
 ```bash
+./install-profile minimal
+# ou, pour Homebrew seul :
 brew bundle --file=Brewfile.minimal
 ```
 
@@ -93,13 +113,15 @@ brew bundle --file=Brewfile.minimal
 
 ---
 
-### Profil normal — Développement complet
+### Profil dev — Développement complet
 
 Inclut tout le profil minimal + outils dev, DevOps, cloud, IA.  
 Les outils de pentest sont dans `Brewfile.pentest` (opt-in séparé).
 
 ```bash
-brew bundle          # installe depuis ./Brewfile par défaut
+./install-profile dev
+# ou, pour Homebrew seul :
+brew bundle --file=Brewfile
 ```
 
 #### CLI ajoutés (par rapport au minimal)
@@ -176,11 +198,13 @@ brew bundle          # installe depuis ./Brewfile par défaut
 
 > ⚠️ À utiliser uniquement dans un cadre légal : audits autorisés, CTF, bug bounty, lab personnel.
 
-À installer **en complément** du profil normal :
+À installer **en complément** du profil dev :
 
 ```bash
-brew bundle                          # profil normal d'abord
-brew bundle --file=Brewfile.pentest  # puis pentest par-dessus
+./install-profile dev                # profil dev d'abord
+./install-profile pentest            # puis pentest par-dessus
+# ou, pour Homebrew seul :
+brew bundle --file=Brewfile.pentest
 ```
 
 #### Réseau & scan
@@ -235,8 +259,9 @@ brew bundle --file=Brewfile.pentest  # puis pentest par-dessus
 ~/.dotfiles/
 ├── README.md                  ← Ce fichier
 ├── LICENSE                    ← MIT
-├── install                    ← Point d'entrée : symlinks + setup
-├── install.conf.yaml          ← Configuration Dotbot (symlinks, shell)
+├── install-profile            ← Point d'entrée principal (minimal|dev|pentest)
+├── install                    ← Symlinks uniquement (Dotbot)
+├── install.conf.yaml          ← Configuration Dotbot (symlinks, répertoires)
 │
 ├── Brewfile.minimal           ← Profil léger (CLI essentiels + apps de base)
 ├── Brewfile                   ← Profil normal (dev complet — installé par défaut)
@@ -253,7 +278,7 @@ brew bundle --file=Brewfile.pentest  # puis pentest par-dessus
 ├── config/
 │   └── bat/config             ← Mappings syntaxe bat (zshrc, Brewfile…)
 │
-├── setup_homebrew.zsh         ← Installe Homebrew + brew bundle (profil normal)
+├── setup_homebrew.zsh         ← Installe Homebrew + brew bundle (profil en argument)
 ├── setup_zsh.zsh              ← Configure zsh comme shell par défaut
 ├── setup_node.zsh             ← Installe Node LTS et packages npm globaux
 ├── shebang.zsh                ← Script de diagnostic (version zsh, shell info)
@@ -285,7 +310,13 @@ brew update && brew upgrade && brew cleanup
 ### Ré-appliquer les symlinks
 
 ```bash
-cd ~/.dotfiles && ./install
+cd ~/.dotfiles && ./install   # symlinks uniquement
+```
+
+### Relancer un profil complet
+
+```bash
+cd ~/.dotfiles && ./install-profile dev
 ```
 
 ### Mettre à jour le submodule Dotbot
