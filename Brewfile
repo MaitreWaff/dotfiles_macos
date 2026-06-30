@@ -14,7 +14,6 @@
 # =============================================================================
 
 tap "hashicorp/tap"
-tap "homebrew/services"
 tap "ngrok/ngrok"
 tap "pulumi/tap"
 
@@ -31,7 +30,7 @@ brew "zsh"          # Shell recommandé
 
 # ─── CLI — Git & qualité ──────────────────────────────────────────────────────
 brew "git"          # Gestionnaire de versions
-brew "git-flow-avh" # Extensions git-flow (AVH edition — branching model)
+brew "git-flow"     # Extensions git-flow (branching model)
 brew "gitleaks"     # Scan de secrets dans les dépôts git
 brew "gnupg"        # Chiffrement et signatures GPG
 brew "shellcheck"   # Linter statique pour scripts shell/bash
@@ -88,10 +87,8 @@ cask "dropbox"            # Stockage cloud et synchronisation
 cask "google-drive"       # Stockage cloud Google
 cask "libreoffice"        # Suite bureautique open source
 cask "macdown"            # Éditeur Markdown avec prévisualisation live
-cask "microsoft-auto-update" # Mises à jour automatiques des apps Microsoft
-cask "microsoft-teams"    # Visioconférence et collaboration Microsoft
-cask "microsoft-word"     # Traitement de texte Microsoft
 cask "monitorcontrol"     # Contrôle luminosité/volume des écrans externes
+cask "microsoft-teams"    # Visioconférence et collaboration Microsoft
 cask "notion"             # Base de connaissance et gestion de projet
 cask "notion-calendar"    # Agenda intégré à Notion
 cask "notion-mail"        # Client mail intégré à Notion

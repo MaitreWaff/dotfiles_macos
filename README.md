@@ -8,8 +8,27 @@ Trois profils Homebrew pour s'adapter à chaque contexte : minimal, développeme
 ## Prérequis
 
 - macOS 13 Ventura ou supérieur
-- **Xcode Command Line Tools** : `xcode-select --install`
 - Connexion Internet (Homebrew + packages)
+
+### Xcode Command Line Tools
+
+Requis avant toute installation. Si absent, Homebrew et git refuseront de démarrer.
+
+```bash
+xcode-select --install
+```
+
+### Licence Xcode (profil dev uniquement)
+
+Le profil `dev` installe Xcode depuis le Mac App Store via `mas`. Après installation, Xcode exige que sa licence soit acceptée — sans ça, `git` affiche une erreur et certains outils de compilation refusent de fonctionner.
+
+Accepter la licence **avant** de relancer le profil :
+
+```bash
+sudo xcodebuild -license accept
+```
+
+> Si Xcode n'est pas encore installé au moment de l'exécution de `brew bundle`, `mas` l'installe automatiquement — mais il faudra accepter la licence manuellement une fois l'installation terminée, puis relancer `./install-profile dev` si des étapes ont échoué entre-temps.
 
 ---
 
@@ -135,7 +154,7 @@ brew bundle --file=Brewfile
 | **Bases de données** | `postgresql@14` |
 | **Documents & médias** | `pandoc`, `poppler`, `exiftool` |
 | **Générateur de site** | `hugo` |
-| **Utilitaires** | `asciinema`, `fortune`, `cowsay`, `telnet`, `ungit`, `watchman`, `git-flow-avh`, `fontconfig` |
+| **Utilitaires** | `asciinema`, `fortune`, `cowsay`, `telnet`, `ungit`, `watchman`, `git-flow`, `fontconfig` |
 
 #### Apps GUI ajoutées
 
@@ -146,7 +165,6 @@ brew bundle --file=Brewfile
 | **IA & assistants** | Claude, Claude Code, ChatGPT |
 | **Productivité** | Notion, Notion Calendar, Notion Mail, Obsidian, MacDown, TeXMaker |
 | **Communication** | Discord, Microsoft Teams |
-| **Microsoft** | Word, Auto Update |
 | **Cloud & stockage** | Dropbox, Google Drive |
 | **Virtualisation** | UTM, Vagrant, VirtualBox, Windows App |
 | **Utilitaires** | LibreOffice, Adobe Acrobat Reader, Tella, Royal TSX |

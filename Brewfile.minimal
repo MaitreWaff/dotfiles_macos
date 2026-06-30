@@ -8,8 +8,6 @@
 #   brew bundle --file=Brewfile.minimal
 # =============================================================================
 
-tap "homebrew/services"
-
 # ─── CLI — Shell & navigation ─────────────────────────────────────────────────
 brew "bat"          # Remplacement de cat avec coloration syntaxique
 brew "bat-extras"   # Scripts intégrant bat (batgrep, batman, batdiff…)
