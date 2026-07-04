@@ -61,6 +61,34 @@ Chaque profil enchaîne automatiquement les étapes nécessaires :
 
 > **Note :** `./install` seul ne fait que les symlinks (Dotbot). Utilise `./install-profile` pour un setup complet.
 
+### Désinstaller un profil
+
+Chaque profil dispose de son script de désinstallation dédié, qui ne touche
+qu'aux paquets Homebrew (formules, casks, taps, extensions VS Code, apps Mac
+App Store) — jamais aux symlinks Dotbot ni au shell par défaut.
+
+```bash
+./uninstall-minimal   # retire les paquets de Brewfile.minimal
+./uninstall-dev       # retire les paquets de Brewfile
+./uninstall-pentest   # retire les paquets de Brewfile.pentest
+```
+
+Chaque script :
+- lit dynamiquement le Brewfile correspondant (jamais de liste codée en dur —
+  toujours synchronisé avec le contenu réel du fichier) ;
+- ignore silencieusement ce qui n'est pas installé ;
+- demande une confirmation `[y/N]` avant toute suppression ;
+- accepte `--zap` pour aussi purger préférences/caches/données des casks ;
+- fournit une aide complète via `--help`.
+
+> ⚠️ **Recoupement des profils** : `Brewfile` (dev) duplique intégralement
+> `Brewfile.minimal` (mêmes formules/casks/extensions, pas de dépendance
+> entre les deux fichiers). `./uninstall-dev` et `./uninstall-minimal`
+> agissent donc chacun sur leur fichier — si les deux profils sont installés
+> en même temps, désinstaller l'un supprime aussi ce qu'il partage avec
+> l'autre. `Brewfile.pentest`, en revanche, ne recoupe ni dev ni minimal :
+> `./uninstall-pentest` est totalement indépendant.
+
 ---
 
 ## Profils Brewfile
@@ -129,6 +157,22 @@ brew bundle --file=Brewfile.minimal
 | Code Spell Checker | Correcteur orthographique en temps réel |
 | YAML | Support YAML avec validation de schémas |
 | GitHub Theme | Thème GitHub officiel (dark/light) |
+
+#### Désinstallation propre
+
+`./uninstall-minimal` retire les formules, casks, extensions VS Code et apps
+Mac App Store listés dans `Brewfile.minimal` (parsing dynamique du fichier,
+comme à l'installation).
+
+```bash
+./uninstall-minimal          # désinstallation standard
+./uninstall-minimal --zap    # + suppression préférences/caches des casks
+./uninstall-minimal --help   # détail complet (comportement, avertissements)
+```
+
+> ⚠️ Le profil dev duplique intégralement les paquets du profil minimal
+> (même formules/casks/extensions). Si dev est aussi installé, ce script
+> supprimera également les outils qu'il partage avec minimal. Voir `--help`.
 
 ---
 
@@ -210,6 +254,23 @@ brew bundle --file=Brewfile
 | Diagrammes | 3 | Draw.io, Excalidraw |
 | Productivité & UI | ~30 | Bookmarks, Peacock, QuokkaJS |
 
+#### Désinstallation propre
+
+`./uninstall-dev` retire les formules, casks, extensions VS Code, apps Mac
+App Store et taps listés dans `Brewfile` (parsing dynamique du fichier,
+comme à l'installation).
+
+```bash
+./uninstall-dev          # désinstallation standard
+./uninstall-dev --zap    # + suppression préférences/caches des casks
+./uninstall-dev --help   # détail complet (comportement, avertissements)
+```
+
+> ⚠️ Brewfile (dev) inclut déjà toutes les entrées de Brewfile.minimal
+> (dupliquées, pas référencées). Ce script supprime donc aussi les outils
+> du profil minimal. Le profil pentest n'est jamais concerné (aucun
+> recoupement) — voir `--help` pour le détail.
+
 ---
 
 ### Profil pentest — Sécurité offensive
@@ -223,6 +284,17 @@ brew bundle --file=Brewfile
 ./install-profile pentest            # puis pentest par-dessus
 # ou, pour Homebrew seul :
 brew bundle --file=Brewfile.pentest
+```
+
+#### Désinstallation propre
+
+`./uninstall-pentest` retire uniquement les formules, casks et taps listés dans
+`Brewfile.pentest` (parsing dynamique du fichier) — les profils minimal et dev
+ne sont jamais touchés.
+
+```bash
+./uninstall-pentest          # désinstallation standard
+./uninstall-pentest --zap    # + suppression préférences/caches des casks (captures, projets…)
 ```
 
 #### Réseau & scan
@@ -280,6 +352,11 @@ brew bundle --file=Brewfile.pentest
 ├── install-profile            ← Point d'entrée principal (minimal|dev|pentest)
 ├── install                    ← Symlinks uniquement (Dotbot)
 ├── install.conf.yaml          ← Configuration Dotbot (symlinks, répertoires)
+│
+├── uninstall-minimal          ← Désinstalle les paquets de Brewfile.minimal
+├── uninstall-dev              ← Désinstalle les paquets de Brewfile
+├── uninstall-pentest          ← Désinstalle les paquets de Brewfile.pentest
+├── uninstall-lib.sh           ← Fonctions partagées par les 3 scripts uninstall-* (à sourcer)
 │
 ├── Brewfile.minimal           ← Profil léger (CLI essentiels + apps de base)
 ├── Brewfile                   ← Profil normal (dev complet — installé par défaut)

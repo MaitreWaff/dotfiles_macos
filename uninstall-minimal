@@ -1,0 +1,133 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BREW_FILE="$BASEDIR/Brewfile.minimal"
+LIB="$BASEDIR/uninstall-lib.sh"
+ZAP=false
+
+# ─── Aide ─────────────────────────────────────────────────────────────────────
+usage() {
+  local n_formulae n_casks n_taps n_vscode n_mas
+  if [[ -f "$BREW_FILE" ]]; then
+    n_formulae="$(grep -c '^brew ' "$BREW_FILE" || true)"
+    n_casks="$(grep -c '^cask ' "$BREW_FILE" || true)"
+    n_taps="$(grep -c '^tap ' "$BREW_FILE" || true)"
+    n_vscode="$(grep -c '^vscode ' "$BREW_FILE" || true)"
+    n_mas="$(grep -c '^mas ' "$BREW_FILE" || true)"
+  else
+    n_formulae="?"; n_casks="?"; n_taps="?"; n_vscode="?"; n_mas="?"
+  fi
+
+  cat <<EOF
+
+Usage : $(basename "$0") [--zap] [--help]
+
+Désinstalle les paquets du profil MINIMAL (« ./install-profile minimal »),
+en se basant sur le contenu actuel de Brewfile.minimal (parsing dynamique,
+jamais de liste codée en dur) :
+
+  - ${n_formulae} formules Homebrew (zsh, git, bat, tmux, curl, wget, less,
+    nano, gitleaks, gnupg, shellcheck, eza, bat-extras)
+  - ${n_casks} casks / apps GUI (iTerm2, Visual Studio Code, Firefox,
+    AppCleaner, MonitorControl, The Unarchiver, Git Credential Manager, VLC)
+  - ${n_taps} taps Homebrew
+  - ${n_vscode} extensions VS Code (le socle « essentielles »)
+  - ${n_mas} app(s) Mac App Store (Quick Note)
+
+Options :
+  --zap    Désinstallation complète des casks : supprime en plus les
+           préférences, caches et données associées de chaque application.
+           Sans cette option, seule l'application est retirée (comportement
+           Homebrew standard, plus prudent — recommandé par défaut).
+  --help   Affiche cette aide.
+
+⚠️  IMPORTANT — recoupement avec le profil dev
+    Brewfile (dev) duplique TOUTES les entrées de Brewfile.minimal (mêmes
+    formules/casks/extensions, listées deux fois plutôt que dev dépendant
+    de minimal). Si le profil dev est également installé sur cette machine,
+    lancer ce script supprimera aussi les outils qu'il partage avec minimal
+    (zsh, git, bat, tmux, curl, wget, less, nano, VS Code, iTerm2, Firefox...).
+    Il n'y a pas moyen de désinstaller « minimal seul » sans affecter dev
+    quand les deux sont présents, car ce sont littéralement les mêmes paquets.
+
+⚠️  Le profil pentest (Brewfile.pentest) n'est jamais touché par ce script —
+    utilise ./uninstall-pentest pour celui-ci (aucun recoupement avec minimal).
+
+Comportement :
+  - Éléments non installés : ignorés silencieusement (pas d'erreur).
+  - Ordre de suppression : formules → casks → extensions VS Code → apps
+    Mac App Store → taps.
+  - Une confirmation [y/N] est demandée avant toute suppression.
+
+Exemples :
+  $(basename "$0")            # désinstallation standard
+  $(basename "$0") --zap      # + purge complète des données des casks
+
+EOF
+}
+
+for arg in "$@"; do
+  case "$arg" in
+    --help|-h) usage; exit 0 ;;
+    --zap) ZAP=true ;;
+    *) echo "Option inconnue : $arg" >&2; usage; exit 1 ;;
+  esac
+done
+
+[[ -f "$BREW_FILE" ]] || { echo "Erreur : $BREW_FILE introuvable" >&2; exit 1; }
+[[ -f "$LIB" ]] || { echo "Erreur : $LIB introuvable" >&2; exit 1; }
+command -v brew &>/dev/null || { echo "Erreur : Homebrew introuvable" >&2; exit 1; }
+
+# shellcheck source=uninstall-lib.sh
+source "$LIB"
+
+FORMULAE=(); while IFS= read -r l; do FORMULAE+=("$l"); done < <(brewfile_entries "$BREW_FILE" brew)
+CASKS=();    while IFS= read -r l; do CASKS+=("$l");    done < <(brewfile_entries "$BREW_FILE" cask)
+TAPS=();     while IFS= read -r l; do TAPS+=("$l");     done < <(brewfile_entries "$BREW_FILE" tap)
+VSCODE=();   while IFS= read -r l; do VSCODE+=("$l");   done < <(brewfile_entries "$BREW_FILE" vscode)
+MAS=();      while IFS= read -r l; do MAS+=("$l");      done < <(brewfile_mas_entries "$BREW_FILE")
+
+echo
+echo "=============================="
+echo " DÉSINSTALLATION : MINIMAL"
+echo "=============================="
+echo
+echo "Seront désinstallés (s'ils sont présents) :"
+echo "  - ${#FORMULAE[@]} formules Homebrew"
+echo "  - ${#CASKS[@]} casks (apps GUI)"
+echo "  - ${#TAPS[@]} taps : ${TAPS[*]:-aucun}"
+echo "  - ${#VSCODE[@]} extensions VS Code"
+echo "  - ${#MAS[@]} apps Mac App Store"
+echo
+echo "⚠️  Si le profil dev est aussi installé, ses paquets partagés avec"
+echo "    minimal seront eux aussi supprimés (mêmes formules dupliquées)."
+$ZAP && echo "⚠️  Mode --zap activé : données/préférences des casks également supprimées."
+echo
+confirm_or_abort "Confirmer la désinstallation du profil minimal ?"
+
+echo
+echo ">>> Désinstallation des formules..."
+uninstall_formulae "${FORMULAE[@]}"
+
+echo
+echo ">>> Désinstallation des casks..."
+uninstall_casks "$ZAP" "${CASKS[@]}"
+
+echo
+echo ">>> Désinstallation des extensions VS Code..."
+uninstall_vscode_extensions "${VSCODE[@]}"
+
+echo
+echo ">>> Désinstallation des apps Mac App Store..."
+uninstall_mas_apps "${MAS[@]}"
+
+echo
+echo ">>> Retrait des taps..."
+uninstall_taps "${TAPS[@]}"
+
+echo
+echo "✅  Profil minimal désinstallé."
+echo "    (Dépendances orphelines non partagées : « brew autoremove » si besoin.)"
+echo
