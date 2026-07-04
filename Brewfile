@@ -81,8 +81,10 @@ brew "ungit"        # Interface web pour git (visual git log)
 brew "watchman"     # Surveillance de fichiers et déclenchement d'actions
 
 # ─── Apps GUI — Productivité & communication ──────────────────────────────────
+cask "alfred"             # Lanceur d'applications et productivité (remplace Spotlight)
 cask "appcleaner"         # Désinstalleur propre
 cask "discord"            # Chat vocal et textuel (communautés dev)
+cask "keyboard-maestro"   # Automatisation macOS (macros, raccourcis clavier)
 cask "dropbox"            # Stockage cloud et synchronisation
 cask "google-drive"       # Stockage cloud Google
 cask "libreoffice"        # Suite bureautique open source
@@ -114,6 +116,7 @@ cask "hex-fiend"             # Éditeur hexadécimal (analyse binaire)
 cask "iterm2"                # Terminal avancé
 cask "ngrok"                 # Tunnels HTTPS vers localhost (webhooks, démos)
 cask "postman"               # Plateforme de développement et test d'API
+cask "sublime-text"          # Éditeur de texte léger et rapide
 cask "visual-studio-code"    # Éditeur de code
 
 # ─── Apps GUI — Cloud & virtualisation ────────────────────────────────────────
