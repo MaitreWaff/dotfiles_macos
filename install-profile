@@ -44,6 +44,15 @@ run_node() {
   "$BASEDIR/setup_node.zsh"
 }
 
+run_pipx() {
+  echo "\n>>> Installation des outils pipx (Exegol…)...\n"
+  if ! command -v pipx &>/dev/null; then
+    echo "Erreur : pipx introuvable — assure-toi que Homebrew a bien installé pipx." >&2
+    return 1
+  fi
+  pipx install exegol 2>/dev/null || pipx upgrade exegol
+}
+
 # ─── Profils ──────────────────────────────────────────────────────────────────
 case "$PROFILE" in
 
@@ -66,6 +75,7 @@ case "$PROFILE" in
     run_zsh
     run_brew Brewfile
     run_node
+    run_pipx
     echo "\n✅  Profil dev installé."
     echo "    Relance ton terminal pour activer zsh.\n"
     ;;

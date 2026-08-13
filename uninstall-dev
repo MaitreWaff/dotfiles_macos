@@ -90,6 +90,7 @@ CASKS=();    while IFS= read -r l; do CASKS+=("$l");    done < <(brewfile_entrie
 TAPS=();     while IFS= read -r l; do TAPS+=("$l");     done < <(brewfile_entries "$BREW_FILE" tap)
 VSCODE=();   while IFS= read -r l; do VSCODE+=("$l");   done < <(brewfile_entries "$BREW_FILE" vscode)
 MAS=();      while IFS= read -r l; do MAS+=("$l");      done < <(brewfile_mas_entries "$BREW_FILE")
+PIPX_PKGS=(exegol)
 
 echo
 echo "=============================="
@@ -102,6 +103,7 @@ echo "  - ${#CASKS[@]} casks (apps GUI)"
 echo "  - ${#TAPS[@]} taps : ${TAPS[*]:-aucun}"
 echo "  - ${#VSCODE[@]} extensions VS Code"
 echo "  - ${#MAS[@]} apps Mac App Store"
+echo "  - ${#PIPX_PKGS[@]} packages pipx : ${PIPX_PKGS[*]}"
 echo
 echo "⚠️  Le profil dev inclut déjà tous les paquets du profil minimal :"
 echo "    ils seront eux aussi supprimés par ce script."
@@ -124,6 +126,10 @@ uninstall_vscode_extensions "${VSCODE[@]}"
 echo
 echo ">>> Désinstallation des apps Mac App Store..."
 uninstall_mas_apps "${MAS[@]}"
+
+echo
+echo ">>> Désinstallation des packages pipx..."
+uninstall_pipx_packages "${PIPX_PKGS[@]}"
 
 echo
 echo ">>> Retrait des taps..."

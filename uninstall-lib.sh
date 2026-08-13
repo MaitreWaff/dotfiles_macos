@@ -87,6 +87,22 @@ uninstall_vscode_extensions() {
   done
 }
 
+uninstall_pipx_packages() {
+  if [[ $# -eq 0 ]]; then return; fi
+  if ! command -v pipx &>/dev/null; then
+    echo "Commande 'pipx' introuvable — packages pipx ignorés."
+    return
+  fi
+  local pkg
+  for pkg in "$@"; do
+    if pipx list 2>/dev/null | grep -q "package ${pkg} "; then
+      pipx uninstall "$pkg"
+    else
+      echo "Ignoré (non installé via pipx) : $pkg"
+    fi
+  done
+}
+
 # Usage : uninstall_mas_apps <"Nom|id"> ...
 uninstall_mas_apps() {
   if [[ $# -eq 0 ]]; then return; fi

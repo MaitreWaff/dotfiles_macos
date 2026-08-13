@@ -183,15 +183,18 @@ Les outils de pentest sont dans `Brewfile.pentest` (opt-in séparé).
 
 ```bash
 ./install-profile dev
-# ou, pour Homebrew seul :
+# ou, pour Homebrew seul (sans Node ni Exegol) :
 brew bundle --file=Brewfile
 ```
+
+> Le profil dev enchaîne : symlinks → zsh → Homebrew (`Brewfile`) → Node LTS → Exegol (via `pipx`)
 
 #### CLI ajoutés (par rapport au minimal)
 
 | Catégorie | Outils |
 |---|---|
 | **Langages & runtimes** | `go`, `node`, `n` (Node version manager), `python@3.13`, `pipx` |
+| **Sécurité (pipx)** | `exegol` — framework de lab offensif (Docker requis) |
 | **DevOps & conteneurs** | `ansible`, `docker`, `kompose`, `kubernetes-cli`, `minikube`, `qemu`, `libvirt`, `socket_vmnet` |
 | **Infrastructure as Code** | `terraform` (HashiCorp), `pulumi` |
 | **Web & réseau** | `httpie`, `pnpm` |
@@ -207,7 +210,7 @@ brew bundle --file=Brewfile
 | **Navigateurs** | Arc, Brave, Google Chrome |
 | **Développement** | Docker Desktop, GitHub Desktop, GitKraken, Postman, Sublime Text, DB Browser SQLite, Expo Orbit, Hex Fiend, ngrok |
 | **IA & assistants** | Claude, Claude Code, ChatGPT |
-| **Productivité** | Notion, Notion Calendar, Notion Mail, Obsidian, MacDown, TeXMaker, Alfred, Keyboard Maestro |
+| **Productivité** | Notion, Notion Calendar, Notion Mail, Obsidian, MacDown, TeXMaker |
 | **Communication** | Discord, Microsoft Teams |
 | **Cloud & stockage** | Dropbox, Google Drive |
 | **Virtualisation** | UTM, Vagrant, VirtualBox, Windows App |
@@ -257,8 +260,7 @@ brew bundle --file=Brewfile
 #### Désinstallation propre
 
 `./uninstall-dev` retire les formules, casks, extensions VS Code, apps Mac
-App Store et taps listés dans `Brewfile` (parsing dynamique du fichier,
-comme à l'installation).
+App Store, taps listés dans `Brewfile`, et le package pipx `exegol`.
 
 ```bash
 ./uninstall-dev          # désinstallation standard
