@@ -30,9 +30,12 @@ confirm_or_abort() {
 }
 
 uninstall_formulae() {
-  local formula
+  local formula short_name
   for formula in "$@"; do
-    if brew list --formula 2>/dev/null | grep -qx "$formula"; then
+    # brew list retourne les noms courts (ex: "netdiscover") même pour les
+    # formules de taps tiers (ex: "sidaf/pentest/netdiscover")
+    short_name="${formula##*/}"
+    if brew list --formula 2>/dev/null | grep -qx "$short_name"; then
       brew uninstall --formula --ignore-dependencies "$formula"
     else
       echo "Ignoré (non installé) : $formula"

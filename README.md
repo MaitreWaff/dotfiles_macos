@@ -330,7 +330,6 @@ ne sont jamais touchés.
 | `hashcat` | Casseur de hashes GPU (le plus rapide) |
 | `exploitdb` | Base Exploit-DB locale (`searchsploit`) |
 | `yara` | Identification de malwares par règles |
-| `ridenum` | Énumération RID/utilisateurs Windows via SMB (tap sidaf) |
 
 #### Apps GUI
 
