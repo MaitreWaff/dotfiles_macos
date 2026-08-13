@@ -28,7 +28,7 @@ fi
 echo "\n<<< Approbation des taps tiers... >>>\n"
 
 # Homebrew 4.x exige une approbation explicite des taps tiers
-local taps_to_trust=(hashicorp/tap ngrok/ngrok pulumi/tap)
+local taps_to_trust=(hashicorp/tap ngrok/ngrok pulumi/tap sidaf/pentest wpscanteam/tap)
 for tap in "${taps_to_trust[@]}"; do
   if brew tap-info "$tap" &>/dev/null 2>&1; then
     brew trust "$tap" 2>/dev/null || true
