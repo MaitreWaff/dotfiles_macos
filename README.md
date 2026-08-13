@@ -331,7 +331,6 @@ ne sont jamais touchés.
 | `exploitdb` | Base Exploit-DB locale (`searchsploit`) |
 | `yara` | Identification de malwares par règles |
 | `ridenum` | Énumération RID/utilisateurs Windows via SMB (tap sidaf) |
-| `snmpcheck` | Énumération SNMP (community strings, infos système) |
 
 #### Apps GUI
 
