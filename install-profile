@@ -51,6 +51,9 @@ run_pipx() {
     return 1
   fi
   pipx install exegol 2>/dev/null || pipx upgrade exegol
+  # Exposer register-python-argcomplete dans le PATH (requis pour l'autocomplétion zsh)
+  pipx inject exegol argcomplete --include-apps 2>/dev/null || \
+    pipx inject exegol argcomplete --include-apps --force
 }
 
 # ─── Profils ──────────────────────────────────────────────────────────────────

@@ -4,6 +4,8 @@ export NULLCMD=bat                    # commande par défaut pour redirection vi
 export N_PREFIX="$HOME/.n"           # répertoire d'installation de n (Node manager)
 export PREFIX="$N_PREFIX"
 export VAGRANT_DEFAULT_PROVIDER=qemu  # provider Vagrant par défaut
+export PIPX_HOME="$HOME/.local/pipx"
+export PIPX_BIN_DIR="$HOME/.local/bin"
 
 # ─── Aliases — navigation & shell ─────────────────────────────────────────────
 alias ls='eza -lah --git'       # ls moderne avec métadonnées git
@@ -31,6 +33,7 @@ typeset -U path
 path=(
   "$N_PREFIX/bin"
   $path
+  "/Users/maitrewaff/.local/bin"
   "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 )
 
@@ -44,5 +47,11 @@ function mkcd() {
 fpath=("$HOME/.docker/completions" $fpath)
 autoload -Uz compinit && compinit
 
-# Argcomplete pour exegol — chargé uniquement si exegol est installé
-command -v exegol &>/dev/null && eval "$(register-python-argcomplete --no-defaults exegol)"
+# Argcomplete pour exegol — chargé uniquement si register-python-argcomplete est disponible
+command -v register-python-argcomplete &>/dev/null \
+  && eval "$(register-python-argcomplete --no-defaults exegol)"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/maitrewaff/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
