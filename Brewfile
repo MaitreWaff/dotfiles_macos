@@ -13,7 +13,6 @@
 #   brew bundle --file=Brewfile.minimal && brew bundle
 # =============================================================================
 
-tap "hashicorp/tap"
 tap "ngrok/ngrok"
 tap "pulumi/tap"
 
@@ -54,10 +53,11 @@ brew "minikube"                 # Cluster Kubernetes local pour développement
 brew "pkgconf"                  # Métadonnées compilateur/linker (remplace pkg-config)
 brew "qemu"                     # Émulateur et virtualiseur générique
 brew "socket_vmnet"             # Daemon vmnet.framework pour QEMU rootless
-brew "hashicorp/tap/terraform"  # Infrastructure as Code HashiCorp
+brew "tfswitch"                 # Gestionnaire de versions Terraform (remplace terraform direct)
 brew "pulumi/tap/pulumi"        # Infrastructure as Code multi-cloud (IaC moderne)
 
 # ─── CLI — Web & réseau ───────────────────────────────────────────────────────
+brew "awscli"       # CLI officielle AWS (commandes aws)
 brew "httpie"       # Client HTTP en ligne de commande (remplace curl pour le dev)
 brew "pnpm"         # Gestionnaire de paquets Node.js rapide et économe en espace
 

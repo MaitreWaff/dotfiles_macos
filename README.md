@@ -196,7 +196,8 @@ brew bundle --file=Brewfile
 | **Langages & runtimes** | `go`, `node`, `n` (Node version manager), `python@3.13`, `pipx` |
 | **Sécurité (pipx)** | `exegol` — framework de lab offensif (Docker requis) |
 | **DevOps & conteneurs** | `ansible`, `docker`, `kompose`, `kubernetes-cli`, `minikube`, `qemu`, `libvirt`, `socket_vmnet` |
-| **Infrastructure as Code** | `terraform` (HashiCorp), `pulumi` |
+| **Infrastructure as Code** | `tfswitch` (versions Terraform), `pulumi` |
+| **Cloud & CLI** | `awscli` |
 | **Web & réseau** | `httpie`, `pnpm` |
 | **Bases de données** | `postgresql@14` |
 | **Documents & médias** | `pandoc`, `poppler`, `exiftool` |
