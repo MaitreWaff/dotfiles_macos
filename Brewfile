@@ -88,7 +88,7 @@ cask "keyboard-maestro"   # Automatisation macOS (macros, raccourcis clavier)
 cask "dropbox"            # Stockage cloud et synchronisation
 cask "google-drive"       # Stockage cloud Google
 cask "libreoffice"        # Suite bureautique open source
-cask "macdown"            # Éditeur Markdown avec prévisualisation live
+cask "typora"             # Éditeur Markdown WYSIWYG (remplace macdown, désactivé Gatekeeper)
 cask "monitorcontrol"     # Contrôle luminosité/volume des écrans externes
 cask "microsoft-teams"    # Visioconférence et collaboration Microsoft
 cask "notion"             # Base de connaissance et gestion de projet
@@ -97,7 +97,7 @@ cask "notion-mail"        # Client mail intégré à Notion
 cask "obsidian"           # Prise de notes en Markdown (graphe de connaissances)
 cask "royal-tsx"          # Gestionnaire de connexions distantes (SSH, RDP, VNC)
 cask "tella"              # Enregistrement vidéo d'écran
-cask "texmaker"           # Éditeur LaTeX
+cask "texstudio"          # Éditeur LaTeX (remplace texmaker, désactivé Gatekeeper)
 
 # ─── Apps GUI — Navigateurs ───────────────────────────────────────────────────
 cask "arc"            # Navigateur Chromium (gestion par espaces)
@@ -122,7 +122,7 @@ cask "visual-studio-code"    # Éditeur de code
 # ─── Apps GUI — Cloud & virtualisation ────────────────────────────────────────
 cask "utm"                     # VMs macOS/Linux/Windows (arm64, basé sur QEMU)
 cask "vagrant"                 # Gestion d'environnements de développement virtualisés
-cask "vagrant-manager"         # Interface menu bar pour Vagrant
+# vagrant-manager retiré : désactivé Gatekeeper depuis 2026-09-01 (projet non maintenu)
 cask "vagrant-vmware-utility"  # Plugin Vagrant pour VMware
 cask "virtualbox"              # Hyperviseur x86 open source
 cask "windows-app"             # Connexion bureau à distance Windows (ex RDP)

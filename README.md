@@ -210,7 +210,7 @@ brew bundle --file=Brewfile
 | **Navigateurs** | Arc, Brave, Google Chrome |
 | **Développement** | Docker Desktop, GitHub Desktop, GitKraken, Postman, Sublime Text, DB Browser SQLite, Expo Orbit, Hex Fiend, ngrok |
 | **IA & assistants** | Claude, Claude Code, ChatGPT |
-| **Productivité** | Notion, Notion Calendar, Notion Mail, Obsidian, MacDown, TeXMaker |
+| **Productivité** | Notion, Notion Calendar, Notion Mail, Obsidian, Typora, TeXstudio |
 | **Communication** | Discord, Microsoft Teams |
 | **Cloud & stockage** | Dropbox, Google Drive |
 | **Virtualisation** | UTM, Vagrant, VirtualBox, Windows App |
