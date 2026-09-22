@@ -428,6 +428,57 @@ git commit -m "fix(security): bumper Dotbot à vX.Y.Z"
 
 ---
 
+## Annexe — Prise en main rapide
+
+### tfswitch — Gestion des versions Terraform
+
+tfswitch télécharge et active n'importe quelle version de Terraform sans conflit.
+Le binaire actif est un symlink dans `~/bin/terraform`.
+
+```bash
+# Sélectionner une version interactivement
+tfswitch
+
+# Installer et activer une version précise
+tfswitch 1.9.8
+
+# Épingler la version dans un projet (lu automatiquement par tfswitch)
+echo "1.9.8" > .terraform-version
+tfswitch          # lit .terraform-version et switch sans prompt
+
+# Vérifier la version active
+terraform version
+```
+
+> **Prérequis PATH** : `~/bin` doit être dans le PATH (déjà configuré dans `zshrc`).  
+> Si `terraform: command not found` après un switch, recharge le shell : `source ~/.zshrc`
+
+---
+
+### awscli — Interface en ligne de commande AWS
+
+```bash
+# Configurer un profil (crée ~/.aws/credentials et ~/.aws/config)
+aws configure
+
+# Configurer un profil nommé (multi-compte)
+aws configure --profile mon-profil
+
+# Vérifier l'identité du profil actif
+aws sts get-caller-identity
+
+# Utiliser un profil spécifique pour une commande
+aws s3 ls --profile mon-profil
+
+# Changer de profil par défaut pour la session
+export AWS_PROFILE=mon-profil
+```
+
+> Les credentials sont stockés dans `~/.aws/credentials` — ne jamais les committer.  
+> Voir aussi l'extension VS Code **AWS Toolkit** (incluse dans le profil dev).
+
+---
+
 ## CI/CD
 
 Un workflow GitHub Actions s'exécute sur chaque push, chaque PR et chaque lundi à 6h UTC :

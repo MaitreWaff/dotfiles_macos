@@ -31,9 +31,10 @@ RPROMPT='%*'
 typeset -U path
 
 path=(
+  "$HOME/bin"
   "$N_PREFIX/bin"
   $path
-  "/Users/maitrewaff/.local/bin"
+  "$HOME/.local/bin"
   "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 )
 
