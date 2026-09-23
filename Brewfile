@@ -97,6 +97,7 @@ cask "notion-mail"        # Client mail intégré à Notion
 cask "obsidian"           # Prise de notes en Markdown (graphe de connaissances)
 cask "royal-tsx"          # Gestionnaire de connexions distantes (SSH, RDP, VNC)
 cask "tella"              # Enregistrement vidéo d'écran
+cask "basictex"           # Distribution LaTeX minimale — fournit xelatex, pdflatex (requis par pandoc → PDF)
 cask "texstudio"          # Éditeur LaTeX (remplace texmaker, désactivé Gatekeeper)
 
 # ─── Apps GUI — Navigateurs ───────────────────────────────────────────────────

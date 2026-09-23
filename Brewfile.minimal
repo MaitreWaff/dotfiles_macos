@@ -25,8 +25,12 @@ brew "gitleaks"     # Scan de secrets dans les dépôts git
 brew "gnupg"        # Chiffrement et signatures GPG
 brew "shellcheck"   # Linter statique pour scripts shell/bash
 
+# ─── CLI — Documents ──────────────────────────────────────────────────────────
+brew "pandoc"       # Conversion de formats (Markdown → PDF, DOCX, HTML…)
+
 # ─── Apps GUI — Indispensables ────────────────────────────────────────────────
 cask "appcleaner"             # Désinstalleur propre (supprime les fichiers associés)
+cask "basictex"               # Distribution LaTeX minimale — fournit xelatex, pdflatex (requis par pandoc → PDF)
 cask "firefox"                # Navigateur web
 cask "git-credential-manager" # Gestion centralisée des credentials git
 cask "iterm2"                 # Terminal avancé (split panes, profils, ligatures)
